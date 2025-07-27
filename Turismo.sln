@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurismoBackend", "TurismoBackend\TurismoBackend.csproj", "{6439668D-A282-4108-B8CD-1041121C2CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurismoServices", "TurismoServices\TurismoServices.csproj", "{7E5C15D6-830B-4FDF-A54C-02303DEE6E22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6439668D-A282-4108-B8CD-1041121C2CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6439668D-A282-4108-B8CD-1041121C2CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6439668D-A282-4108-B8CD-1041121C2CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6439668D-A282-4108-B8CD-1041121C2CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E5C15D6-830B-4FDF-A54C-02303DEE6E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E5C15D6-830B-4FDF-A54C-02303DEE6E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E5C15D6-830B-4FDF-A54C-02303DEE6E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E5C15D6-830B-4FDF-A54C-02303DEE6E22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F9773B8-2776-4087-B2B8-C47E6F0752B0}
+	EndGlobalSection
+EndGlobal
