@@ -14,21 +14,17 @@ namespace TurismoBackend.DataContext
         {
         }
 
-        // DbSets for your models in the specified order
-        public DbSet<Administrador> Administradores { get; set; }
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Actividad> Actividades { get; set; }
-        public DbSet<Destino> Destinos { get; set; }
-        public DbSet<Itinerario> Itinerarios { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var configuration = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json")
-                    .Build();
-            string? cadenaConexion = configuration.GetConnectionString("mysqlRemoto");
+            if (!optionsBuilder.IsConfigured)
+            {
+                var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+                string? cadenaConexion = configuration.GetConnectionString("mysqlRemoto");
 
-            optionsBuilder.UseMySql(cadenaConexion, ServerVersion.AutoDetect(cadenaConexion));
+                optionsBuilder.UseMySql(cadenaConexion, ServerVersion.AutoDetect(cadenaConexion));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -195,5 +191,11 @@ namespace TurismoBackend.DataContext
                 }
             );
         }
+        // DbSets for your models in the specified order
+        public DbSet<Administrador> Administradores { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Actividad> Actividades { get; set; }
+        public DbSet<Destino> Destinos { get; set; }
+        public DbSet<Itinerario> Itinerarios { get; set; }
     }
 }

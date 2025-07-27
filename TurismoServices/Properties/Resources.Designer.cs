@@ -79,7 +79,7 @@ namespace TurismoServices.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ninguna.
+        ///   Busca una cadena traducida similar a https://localhost:7041/.
         /// </summary>
         internal static string UrlApiLocal {
             get {

@@ -124,6 +124,6 @@
     <value>https://turismobackend.azurewebsites.net/</value>
   </data>
   <data name="UrlApiLocal" xml:space="preserve">
-    <value>ninguna</value>
+    <value>https://localhost:7041/</value>
   </data>
 </root>
