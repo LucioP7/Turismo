@@ -68,5 +68,23 @@ namespace TurismoServices.Properties {
                 return ResourceManager.GetString("Remoto", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://turismobackend.azurewebsites.net/.
+        /// </summary>
+        internal static string UrlApi {
+            get {
+                return ResourceManager.GetString("UrlApi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ninguna.
+        /// </summary>
+        internal static string UrlApiLocal {
+            get {
+                return ResourceManager.GetString("UrlApiLocal", resourceCulture);
+            }
+        }
     }
 }
