@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TurismoBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class CargaDatosSemillas : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,6 +41,39 @@ namespace TurismoBackend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Clientes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nombre = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Apellido = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Documento = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    FechaNac = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Telefono = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Direccion = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Ciudad = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Provincia = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Pais = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Eliminado = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Destinos",
                 columns: table => new
                 {
@@ -61,6 +94,33 @@ namespace TurismoBackend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Destinos", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Ventas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ClienteId = table.Column<int>(type: "int", nullable: false),
+                    FechaReservacion = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EstadoReservacion = table.Column<int>(type: "int", nullable: false),
+                    MetodoPago = table.Column<int>(type: "int", nullable: false),
+                    ConfirmacionPago = table.Column<int>(type: "int", nullable: false),
+                    FechaPago = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Eliminado = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ventas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ventas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -121,79 +181,57 @@ namespace TurismoBackend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Clientes",
+                name: "RegistrosVenta",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Apellido = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Documento = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FechaNac = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Telefono = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Direccion = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Ciudad = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Provincia = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Pais = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Transporte = table.Column<int>(type: "int", nullable: false),
+                    VentaId = table.Column<int>(type: "int", nullable: false),
                     IdDestino = table.Column<int>(type: "int", nullable: true),
-                    DestinoId = table.Column<int>(type: "int", nullable: true),
                     IdActividad = table.Column<int>(type: "int", nullable: true),
-                    ActividadId = table.Column<int>(type: "int", nullable: true),
-                    NumPersona = table.Column<int>(type: "int", nullable: false),
-                    FechaReservacion = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    EstadoReservacion = table.Column<int>(type: "int", nullable: false),
                     IdItinerario = table.Column<int>(type: "int", nullable: true),
-                    ItinerarioId = table.Column<int>(type: "int", nullable: true),
-                    MetodoPago = table.Column<int>(type: "int", nullable: false),
-                    ConfirmacionPago = table.Column<int>(type: "int", nullable: false),
-                    FechaPago = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    Eliminado = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    Transporte = table.Column<int>(type: "int", nullable: false),
+                    NumPersona = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                    table.PrimaryKey("PK_RegistrosVenta", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Clientes_Actividades_ActividadId",
-                        column: x => x.ActividadId,
+                        name: "FK_RegistrosVenta_Actividades_IdActividad",
+                        column: x => x.IdActividad,
                         principalTable: "Actividades",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Clientes_Destinos_DestinoId",
-                        column: x => x.DestinoId,
+                        name: "FK_RegistrosVenta_Destinos_IdDestino",
+                        column: x => x.IdDestino,
                         principalTable: "Destinos",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Clientes_Itinerarios_ItinerarioId",
-                        column: x => x.ItinerarioId,
+                        name: "FK_RegistrosVenta_Itinerarios_IdItinerario",
+                        column: x => x.IdItinerario,
                         principalTable: "Itinerarios",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_RegistrosVenta_Ventas_VentaId",
+                        column: x => x.VentaId,
+                        principalTable: "Ventas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
                 table: "Administradores",
                 columns: new[] { "Id", "Apellido", "Eliminado", "Email", "FechaRegistro", "Nombre", "Telefono" },
-                values: new object[] { 1, "Pianetti", false, "lp@lp.com", new DateTime(2025, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lucio", "44064814" });
+                values: new object[] { 1, "Uno", false, "ejemplo@admin.com", new DateTime(2025, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "EjemploAdministrador", "0000000000" });
 
             migrationBuilder.InsertData(
                 table: "Clientes",
-                columns: new[] { "Id", "ActividadId", "Apellido", "Ciudad", "ConfirmacionPago", "DestinoId", "Direccion", "Documento", "Eliminado", "Email", "EstadoReservacion", "FechaNac", "FechaPago", "FechaReservacion", "IdActividad", "IdDestino", "IdItinerario", "ItinerarioId", "MetodoPago", "Nombre", "NumPersona", "Pais", "Provincia", "Telefono", "Total", "Transporte" },
+                columns: new[] { "Id", "Apellido", "Ciudad", "Direccion", "Documento", "Eliminado", "Email", "FechaNac", "Nombre", "Pais", "Provincia", "Telefono" },
                 values: new object[,]
                 {
-                    { 1, null, "Pianetti", "San Justo", 1, null, "San Roque 2440", "44064814", false, "lp7@lp7.com", 0, new DateTime(2002, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1735), new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1718), 1, 1, 1, null, 0, "Lucio", 1, "Argentina", "Santa Fe", "3498518884", 150000.00m, 0 },
-                    { 2, null, "Perez", "Ciudad Falsa", 0, null, "Calle Falsa 123", "12345678", false, "ej@ej.com", 1, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1741), new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1740), 2, 2, 2, null, 1, "Juan", 2, "Argentina", "Provincia Falsa", "1234567890", 200000.00m, 0 }
+                    { 1, "EjemploApellido1", "EjemploCiudad1", "EjemploDireccion1", "00000001", false, "ejemplo1@cliente.com", new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "EjemploCliente1", "EjemploPais1", "EjemploProvincia1", "0000000001" },
+                    { 2, "EjemploApellido2", "EjemploCiudad2", "EjemploDireccion2", "00000002", false, "ejemplo2@cliente.com", new DateTime(1995, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "EjemploCliente2", "EjemploPais2", "EjemploProvincia2", "0000000002" }
                 });
 
             migrationBuilder.InsertData(
@@ -201,8 +239,8 @@ namespace TurismoBackend.Migrations
                 columns: new[] { "Id", "Categoria", "Descripcion", "Eliminado", "Nombre", "Pais", "URL_image" },
                 values: new object[,]
                 {
-                    { 1, "Natural", "Maravilla natural en la provincia de Misiones.", false, "Cataratas del Iguazú", "Argentina", "https://www.iguazujungle.com/esp/web2/images/Web%20192016.jpg" },
-                    { 2, "Cultural", "Capital cosmopolita de Argentina con rica vida cultural.", false, "Buenos Aires", "Argentina", "https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/07/03201757/Ciudades-mas-caras-de-America-Latina-Buenos-Aires.jpg" }
+                    { 1, "Ejemplo", "Descripción ejemplo destino 1", false, "EjemploDestino1", "EjemploPais", "https://ejemplo.com/destino1.jpg" },
+                    { 2, "Ejemplo", "Descripción ejemplo destino 2", false, "EjemploDestino2", "EjemploPais", "https://ejemplo.com/destino2.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -210,8 +248,8 @@ namespace TurismoBackend.Migrations
                 columns: new[] { "Id", "Costo", "Descripcion", "Duracion", "Eliminado", "IdDestino", "Nombre", "URL_Image" },
                 values: new object[,]
                 {
-                    { 1, 75.00m, "Exploración a pie por los senderos de las Cataratas del Iguazú.", 180, false, 1, "Caminata por las Cataratas del Iguazú", "https://media.tacdn.com/media/attractions-splice-spp-360x240/0a/dd/10/25.jpg" },
-                    { 2, 50.00m, "Visita a la Casa Rosada de Buenos Aires.", 120, false, 2, "Visita a la Casa Rosada", "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/70/5f/c2.jpg" }
+                    { 1, 75.00m, "Descripción actividad ejemplo 1", 180, false, 1, "EjemploActividad1", "https://ejemplo.com/actividad1.jpg" },
+                    { 2, 50.00m, "Descripción actividad ejemplo 2", 120, false, 2, "EjemploActividad2", "https://ejemplo.com/actividad2.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -219,8 +257,26 @@ namespace TurismoBackend.Migrations
                 columns: new[] { "Id", "Descripcion", "Eliminado", "FechaFin", "FechaInicio", "IdDestino", "Nombre" },
                 values: new object[,]
                 {
-                    { 1, "Viaje a las Cataratas del Iguazú con actividades de aventura.", false, new DateTime(2025, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Aventura en las Cataratas" },
-                    { 2, "Viaje a Buenos Aires con actividades culturales.", false, new DateTime(2025, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Cultura en Buenos Aires" }
+                    { 1, "Ejemplo de itinerario 1", false, new DateTime(2025, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "EjemploItinerario1" },
+                    { 2, "Ejemplo de itinerario 2", false, new DateTime(2025, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "EjemploItinerario2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Ventas",
+                columns: new[] { "Id", "ClienteId", "ConfirmacionPago", "Eliminado", "EstadoReservacion", "FechaPago", "FechaReservacion", "MetodoPago", "Total" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, false, 0, new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3220), new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3202), 0, 1500.00m },
+                    { 2, 2, 0, false, 1, new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3224), new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3223), 1, 2500.00m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RegistrosVenta",
+                columns: new[] { "Id", "IdActividad", "IdDestino", "IdItinerario", "NumPersona", "Transporte", "VentaId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1, 2, 0, 1 },
+                    { 2, 2, 2, 2, 4, 1, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -229,24 +285,34 @@ namespace TurismoBackend.Migrations
                 column: "IdDestino");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clientes_ActividadId",
-                table: "Clientes",
-                column: "ActividadId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clientes_DestinoId",
-                table: "Clientes",
-                column: "DestinoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clientes_ItinerarioId",
-                table: "Clientes",
-                column: "ItinerarioId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Itinerarios_IdDestino",
                 table: "Itinerarios",
                 column: "IdDestino");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistrosVenta_IdActividad",
+                table: "RegistrosVenta",
+                column: "IdActividad");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistrosVenta_IdDestino",
+                table: "RegistrosVenta",
+                column: "IdDestino");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistrosVenta_IdItinerario",
+                table: "RegistrosVenta",
+                column: "IdItinerario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistrosVenta_VentaId",
+                table: "RegistrosVenta",
+                column: "VentaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ventas_ClienteId",
+                table: "Ventas",
+                column: "ClienteId");
         }
 
         /// <inheritdoc />
@@ -256,7 +322,7 @@ namespace TurismoBackend.Migrations
                 name: "Administradores");
 
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "RegistrosVenta");
 
             migrationBuilder.DropTable(
                 name: "Actividades");
@@ -265,7 +331,13 @@ namespace TurismoBackend.Migrations
                 name: "Itinerarios");
 
             migrationBuilder.DropTable(
+                name: "Ventas");
+
+            migrationBuilder.DropTable(
                 name: "Destinos");
+
+            migrationBuilder.DropTable(
+                name: "Clientes");
         }
     }
 }

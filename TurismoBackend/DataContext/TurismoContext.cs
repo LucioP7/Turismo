@@ -1,199 +1,260 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TurismoServices.Models;
 using TurismoServices.Enums;
-
 
 namespace TurismoBackend.DataContext
 {
     public partial class TurismoContext : DbContext
     {
-        public TurismoContext()
-        {
-        }
-        public TurismoContext(DbContextOptions<TurismoContext> options) : base(options)
-        {
-        }
+        public TurismoContext() { }
+
+        public TurismoContext(DbContextOptions<TurismoContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+                    .AddJsonFile("appsettings.json")
+                    .Build();
                 string? cadenaConexion = configuration.GetConnectionString("mysqlRemoto");
-
                 optionsBuilder.UseMySql(cadenaConexion, ServerVersion.AutoDetect(cadenaConexion));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Configuracion de modelos
+            base.OnModelCreating(modelBuilder);
 
-            //Configurar la relación uno a muchos entre Destino y pfItinerary
+            // ---------------- RELACIONES ----------------
+            // Cliente -> Venta (1:N)
+            modelBuilder.Entity<Venta>()
+                .HasOne(v => v.Cliente)
+                .WithMany(c => c.Ventas)
+                .HasForeignKey(v => v.ClienteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Venta -> RegistroVenta (1:N)
+            modelBuilder.Entity<RegistroVenta>()
+                .HasOne(r => r.Venta)
+                .WithMany(v => v.Registros)
+                .HasForeignKey(r => r.VentaId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // RegistroVenta -> Destino (opcional)
+            modelBuilder.Entity<RegistroVenta>()
+                .HasOne(r => r.Destino)
+                .WithMany()
+                .HasForeignKey(r => r.IdDestino);
+
+            // RegistroVenta -> Actividad (opcional)
+            modelBuilder.Entity<RegistroVenta>()
+                .HasOne(r => r.Actividad)
+                .WithMany()
+                .HasForeignKey(r => r.IdActividad);
+
+            // RegistroVenta -> Itinerario (opcional)
+            modelBuilder.Entity<RegistroVenta>()
+                .HasOne(r => r.Itinerario)
+                .WithMany()
+                .HasForeignKey(r => r.IdItinerario);
+
+            // Itinerario -> Destino (1:N)
             modelBuilder.Entity<Itinerario>()
                 .HasOne(i => i.Destino)
                 .WithMany(d => d.Itinerario)
                 .HasForeignKey(i => i.IdDestino)
                 .OnDelete(DeleteBehavior.Restrict);
-            
-            // Configurar la relación uno a muchos entre Destino y Actividad
+
+            // Actividad -> Destino (1:N)
             modelBuilder.Entity<Actividad>()
                 .HasOne(a => a.Destino)
                 .WithMany(d => d.Actividad)
                 .HasForeignKey(a => a.IdDestino)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Datos semilla para Administrador
+            // ---------------- DATOS SEMILLA ----------------
+
+            // Administrador
             modelBuilder.Entity<Administrador>().HasData(
                 new Administrador
                 {
                     Id = 1,
-                    Nombre = "Lucio",
-                    Apellido = "Pianetti",
-                    Email = "lp@lp.com",
-                    Telefono = "44064814",
+                    Nombre = "EjemploAdministrador",
+                    Apellido = "Uno",
+                    Email = "ejemplo@admin.com",
+                    Telefono = "0000000000",
                     FechaRegistro = new DateTime(2025, 07, 27)
                 }
             );
 
-
-            // Datos semilla para Destino
+            // Destinos
             modelBuilder.Entity<Destino>().HasData(
                 new Destino
                 {
                     Id = 1,
-                    Nombre = "Cataratas del Iguazú",
-                    Descripcion = "Maravilla natural en la provincia de Misiones.",
-                    URL_image = "https://www.iguazujungle.com/esp/web2/images/Web%20192016.jpg",
-                    Categoria = "Natural",
-                    Pais = "Argentina",
+                    Nombre = "EjemploDestino1",
+                    Descripcion = "Descripción ejemplo destino 1",
+                    URL_image = "https://ejemplo.com/destino1.jpg",
+                    Categoria = "Ejemplo",
+                    Pais = "EjemploPais",
                     Eliminado = false
                 },
                 new Destino
                 {
                     Id = 2,
-                    Nombre = "Buenos Aires",
-                    Descripcion = "Capital cosmopolita de Argentina con rica vida cultural.",
-                    URL_image = "https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/07/03201757/Ciudades-mas-caras-de-America-Latina-Buenos-Aires.jpg",
-                    Categoria = "Cultural",
-                    Pais = "Argentina",
+                    Nombre = "EjemploDestino2",
+                    Descripcion = "Descripción ejemplo destino 2",
+                    URL_image = "https://ejemplo.com/destino2.jpg",
+                    Categoria = "Ejemplo",
+                    Pais = "EjemploPais",
                     Eliminado = false
                 }
             );
 
-            // Datos semilla para pfItinerary
+            // Itinerarios
             modelBuilder.Entity<Itinerario>().HasData(
                 new Itinerario
                 {
                     Id = 1,
-                    Nombre = "Aventura en las Cataratas",
+                    Nombre = "EjemploItinerario1",
                     FechaInicio = new DateTime(2025, 12, 1),
                     FechaFin = new DateTime(2025, 12, 5),
-                    Descripcion = "Viaje a las Cataratas del Iguazú con actividades de aventura.",
+                    Descripcion = "Ejemplo de itinerario 1",
                     IdDestino = 1,
                     Eliminado = false
                 },
-
                 new Itinerario
                 {
                     Id = 2,
-                    Nombre = "Cultura en Buenos Aires",
+                    Nombre = "EjemploItinerario2",
                     FechaInicio = new DateTime(2025, 12, 10),
                     FechaFin = new DateTime(2025, 12, 15),
-                    Descripcion = "Viaje a Buenos Aires con actividades culturales.",
+                    Descripcion = "Ejemplo de itinerario 2",
                     IdDestino = 2,
                     Eliminado = false
                 }
             );
 
-
-            // Datos semilla para Actividad
+            // Actividades
             modelBuilder.Entity<Actividad>().HasData(
                 new Actividad
                 {
                     Id = 1,
-                    Nombre = "Caminata por las Cataratas del Iguazú",
-                    URL_Image = "https://media.tacdn.com/media/attractions-splice-spp-360x240/0a/dd/10/25.jpg",
+                    Nombre = "EjemploActividad1",
+                    URL_Image = "https://ejemplo.com/actividad1.jpg",
                     Duracion = 180,
                     Costo = 75.00m,
-                    Descripcion = "Exploración a pie por los senderos de las Cataratas del Iguazú.",
+                    Descripcion = "Descripción actividad ejemplo 1",
                     IdDestino = 1,
                     Eliminado = false
                 },
-
                 new Actividad
                 {
                     Id = 2,
-                    Nombre = "Visita a la Casa Rosada",
-                    URL_Image = "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/70/5f/c2.jpg",
+                    Nombre = "EjemploActividad2",
+                    URL_Image = "https://ejemplo.com/actividad2.jpg",
                     Duracion = 120,
                     Costo = 50.00m,
-                    Descripcion = "Visita a la Casa Rosada de Buenos Aires.",
+                    Descripcion = "Descripción actividad ejemplo 2",
                     IdDestino = 2,
                     Eliminado = false
                 }
             );
 
-
-            // Datos semilla para pfClient
+            // Clientes
             modelBuilder.Entity<Cliente>().HasData(
                 new Cliente
                 {
                     Id = 1,
-                    Nombre = "Lucio",
-                    Apellido = "Pianetti",
-                    Documento = "44064814",
-                    FechaNac = new DateTime(2002, 05, 07),
-                    Email = "lp7@lp7.com",
-                    Telefono = "3498518884",
-                    Direccion = "San Roque 2440",
-                    Ciudad = "San Justo",
-                    Provincia = "Santa Fe",
-                    Pais = "Argentina",
-                    IdDestino = 1,
-                    IdActividad = 1,
-                    NumPersona = 1,
-                    FechaReservacion = DateTime.Now,
-                    EstadoReservacion = EstadoReservacionEnum.Confirmado,
-                    IdItinerario = 1,
-                    MetodoPago = MetodoPagoEnum.Efectivo,
-                    ConfirmacionPago = ConfirmacionPagoEnum.Confirmado,
-                    FechaPago = DateTime.Now,
-                    Total = 150000.00m,
+                    Nombre = "EjemploCliente1",
+                    Apellido = "EjemploApellido1",
+                    Documento = "00000001",
+                    FechaNac = new DateTime(1990, 01, 01),
+                    Email = "ejemplo1@cliente.com",
+                    Telefono = "0000000001",
+                    Direccion = "EjemploDireccion1",
+                    Ciudad = "EjemploCiudad1",
+                    Provincia = "EjemploProvincia1",
+                    Pais = "EjemploPais1",
                     Eliminado = false
                 },
                 new Cliente
                 {
                     Id = 2,
-                    Nombre = "Juan",
-                    Apellido = "Perez",
-                    Documento = "12345678",
-                    FechaNac = new DateTime(1990, 01, 01),
-                    Email = "ej@ej.com",
-                    Telefono = "1234567890",
-                    Direccion = "Calle Falsa 123",
-                    Ciudad = "Ciudad Falsa",
-                    Provincia = "Provincia Falsa",
-                    Pais = "Argentina",
-                    IdDestino = 2,
-                    IdActividad = 2,
-                    NumPersona = 2,
-                    FechaReservacion = DateTime.Now,
-                    EstadoReservacion = EstadoReservacionEnum.Pendiente,
-                    IdItinerario = 2,
-                    MetodoPago = MetodoPagoEnum.TarjetaCredito,
-                    ConfirmacionPago = ConfirmacionPagoEnum.Pendiente,
-                    FechaPago = DateTime.Now,
-                    Total = 200000.00m,
+                    Nombre = "EjemploCliente2",
+                    Apellido = "EjemploApellido2",
+                    Documento = "00000002",
+                    FechaNac = new DateTime(1995, 05, 05),
+                    Email = "ejemplo2@cliente.com",
+                    Telefono = "0000000002",
+                    Direccion = "EjemploDireccion2",
+                    Ciudad = "EjemploCiudad2",
+                    Provincia = "EjemploProvincia2",
+                    Pais = "EjemploPais2",
                     Eliminado = false
                 }
             );
+
+            // Ventas
+            modelBuilder.Entity<Venta>().HasData(
+                new Venta
+                {
+                    Id = 1,
+                    ClienteId = 1,
+                    FechaReservacion = DateTime.Now,
+                    EstadoReservacion = EstadoReservacionEnum.Confirmado,
+                    MetodoPago = MetodoPagoEnum.Efectivo,
+                    ConfirmacionPago = ConfirmacionPagoEnum.Confirmado,
+                    FechaPago = DateTime.Now,
+                    Total = 1500.00m,
+                    Eliminado = false
+                },
+                new Venta
+                {
+                    Id = 2,
+                    ClienteId = 2,
+                    FechaReservacion = DateTime.Now,
+                    EstadoReservacion = EstadoReservacionEnum.Pendiente,
+                    MetodoPago = MetodoPagoEnum.TarjetaCredito,
+                    ConfirmacionPago = ConfirmacionPagoEnum.Pendiente,
+                    FechaPago = DateTime.Now,
+                    Total = 2500.00m,
+                    Eliminado = false
+                }
+            );
+
+            // Registros de venta
+            modelBuilder.Entity<RegistroVenta>().HasData(
+                new RegistroVenta
+                {
+                    Id = 1,
+                    VentaId = 1,
+                    IdDestino = 1,
+                    IdActividad = 1,
+                    IdItinerario = 1,
+                    Transporte = PreferenciaTransporteEnum.Automóvil,
+                    NumPersona = 2
+                },
+                new RegistroVenta
+                {
+                    Id = 2,
+                    VentaId = 2,
+                    IdDestino = 2,
+                    IdActividad = 2,
+                    IdItinerario = 2,
+                    Transporte = PreferenciaTransporteEnum.Autobús,
+                    NumPersona = 4
+                }
+            );
         }
-        // DbSets for your models in the specified order
+
+        // ---------------- DBSETS ----------------
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<RegistroVenta> RegistrosVenta { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
         public DbSet<Destino> Destinos { get; set; }
         public DbSet<Itinerario> Itinerarios { get; set; }

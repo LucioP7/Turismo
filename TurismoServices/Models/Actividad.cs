@@ -20,5 +20,10 @@ namespace TurismoServices.Models
         public int? IdDestino { get; set; }
         public virtual Destino? Destino { get; set; }
         public bool Eliminado { get; set; } = false;
+        public override string ToString()
+        {
+            return Nombre;
+        }
+
     }
 }

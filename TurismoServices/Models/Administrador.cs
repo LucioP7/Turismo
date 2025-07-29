@@ -16,6 +16,11 @@ namespace TurismoServices.Models
         public DateTime FechaRegistro { get; set; }
 
         public bool Eliminado { get; set; } = false;
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 
 }

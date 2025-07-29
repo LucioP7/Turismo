@@ -17,10 +17,28 @@ namespace TurismoDesktop.Views
             InitializeComponent();
         }
 
-        private void destinoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void destinoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             DestinoView destinoView = new DestinoView();
             destinoView.ShowDialog();
+        }
+
+        private void actividadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ActividadView actividadView = new ActividadView();
+            actividadView.ShowDialog();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ItinerarioView itinerarioView = new ItinerarioView();
+            itinerarioView.ShowDialog();
+        }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClienteView clienteView = new ClienteView();
+            clienteView.ShowDialog();
         }
     }
 }

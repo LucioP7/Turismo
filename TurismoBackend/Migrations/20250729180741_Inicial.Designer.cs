@@ -11,8 +11,8 @@ using TurismoBackend.DataContext;
 namespace TurismoBackend.Migrations
 {
     [DbContext(typeof(TurismoContext))]
-    [Migration("20250727200203_CargaDatosSemillas")]
-    partial class CargaDatosSemillas
+    [Migration("20250729180741_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,23 +61,23 @@ namespace TurismoBackend.Migrations
                         {
                             Id = 1,
                             Costo = 75.00m,
-                            Descripcion = "Exploración a pie por los senderos de las Cataratas del Iguazú.",
+                            Descripcion = "Descripción actividad ejemplo 1",
                             Duracion = 180,
                             Eliminado = false,
                             IdDestino = 1,
-                            Nombre = "Caminata por las Cataratas del Iguazú",
-                            URL_Image = "https://media.tacdn.com/media/attractions-splice-spp-360x240/0a/dd/10/25.jpg"
+                            Nombre = "EjemploActividad1",
+                            URL_Image = "https://ejemplo.com/actividad1.jpg"
                         },
                         new
                         {
                             Id = 2,
                             Costo = 50.00m,
-                            Descripcion = "Visita a la Casa Rosada de Buenos Aires.",
+                            Descripcion = "Descripción actividad ejemplo 2",
                             Duracion = 120,
                             Eliminado = false,
                             IdDestino = 2,
-                            Nombre = "Visita a la Casa Rosada",
-                            URL_Image = "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/70/5f/c2.jpg"
+                            Nombre = "EjemploActividad2",
+                            URL_Image = "https://ejemplo.com/actividad2.jpg"
                         });
                 });
 
@@ -117,12 +117,12 @@ namespace TurismoBackend.Migrations
                         new
                         {
                             Id = 1,
-                            Apellido = "Pianetti",
+                            Apellido = "Uno",
                             Eliminado = false,
-                            Email = "lp@lp.com",
+                            Email = "ejemplo@admin.com",
                             FechaRegistro = new DateTime(2025, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Lucio",
-                            Telefono = "44064814"
+                            Nombre = "EjemploAdministrador",
+                            Telefono = "0000000000"
                         });
                 });
 
@@ -132,9 +132,6 @@ namespace TurismoBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ActividadId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -142,12 +139,6 @@ namespace TurismoBackend.Migrations
                     b.Property<string>("Ciudad")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("ConfirmacionPago")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DestinoId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -164,39 +155,12 @@ namespace TurismoBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EstadoReservacion")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("FechaNac")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("FechaPago")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("FechaReservacion")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("IdActividad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDestino")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdItinerario")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ItinerarioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MetodoPago")
-                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("NumPersona")
-                        .HasColumnType("int");
 
                     b.Property<string>("Pais")
                         .IsRequired()
@@ -210,19 +174,7 @@ namespace TurismoBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("Transporte")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ActividadId");
-
-                    b.HasIndex("DestinoId");
-
-                    b.HasIndex("ItinerarioId");
 
                     b.ToTable("Clientes");
 
@@ -230,54 +182,32 @@ namespace TurismoBackend.Migrations
                         new
                         {
                             Id = 1,
-                            Apellido = "Pianetti",
-                            Ciudad = "San Justo",
-                            ConfirmacionPago = 1,
-                            Direccion = "San Roque 2440",
-                            Documento = "44064814",
+                            Apellido = "EjemploApellido1",
+                            Ciudad = "EjemploCiudad1",
+                            Direccion = "EjemploDireccion1",
+                            Documento = "00000001",
                             Eliminado = false,
-                            Email = "lp7@lp7.com",
-                            EstadoReservacion = 0,
-                            FechaNac = new DateTime(2002, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FechaPago = new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1735),
-                            FechaReservacion = new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1718),
-                            IdActividad = 1,
-                            IdDestino = 1,
-                            IdItinerario = 1,
-                            MetodoPago = 0,
-                            Nombre = "Lucio",
-                            NumPersona = 1,
-                            Pais = "Argentina",
-                            Provincia = "Santa Fe",
-                            Telefono = "3498518884",
-                            Total = 150000.00m,
-                            Transporte = 0
+                            Email = "ejemplo1@cliente.com",
+                            FechaNac = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "EjemploCliente1",
+                            Pais = "EjemploPais1",
+                            Provincia = "EjemploProvincia1",
+                            Telefono = "0000000001"
                         },
                         new
                         {
                             Id = 2,
-                            Apellido = "Perez",
-                            Ciudad = "Ciudad Falsa",
-                            ConfirmacionPago = 0,
-                            Direccion = "Calle Falsa 123",
-                            Documento = "12345678",
+                            Apellido = "EjemploApellido2",
+                            Ciudad = "EjemploCiudad2",
+                            Direccion = "EjemploDireccion2",
+                            Documento = "00000002",
                             Eliminado = false,
-                            Email = "ej@ej.com",
-                            EstadoReservacion = 1,
-                            FechaNac = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FechaPago = new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1741),
-                            FechaReservacion = new DateTime(2025, 7, 27, 17, 2, 2, 498, DateTimeKind.Local).AddTicks(1740),
-                            IdActividad = 2,
-                            IdDestino = 2,
-                            IdItinerario = 2,
-                            MetodoPago = 1,
-                            Nombre = "Juan",
-                            NumPersona = 2,
-                            Pais = "Argentina",
-                            Provincia = "Provincia Falsa",
-                            Telefono = "1234567890",
-                            Total = 200000.00m,
-                            Transporte = 0
+                            Email = "ejemplo2@cliente.com",
+                            FechaNac = new DateTime(1995, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "EjemploCliente2",
+                            Pais = "EjemploPais2",
+                            Provincia = "EjemploProvincia2",
+                            Telefono = "0000000002"
                         });
                 });
 
@@ -318,22 +248,22 @@ namespace TurismoBackend.Migrations
                         new
                         {
                             Id = 1,
-                            Categoria = "Natural",
-                            Descripcion = "Maravilla natural en la provincia de Misiones.",
+                            Categoria = "Ejemplo",
+                            Descripcion = "Descripción ejemplo destino 1",
                             Eliminado = false,
-                            Nombre = "Cataratas del Iguazú",
-                            Pais = "Argentina",
-                            URL_image = "https://www.iguazujungle.com/esp/web2/images/Web%20192016.jpg"
+                            Nombre = "EjemploDestino1",
+                            Pais = "EjemploPais",
+                            URL_image = "https://ejemplo.com/destino1.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            Categoria = "Cultural",
-                            Descripcion = "Capital cosmopolita de Argentina con rica vida cultural.",
+                            Categoria = "Ejemplo",
+                            Descripcion = "Descripción ejemplo destino 2",
                             Eliminado = false,
-                            Nombre = "Buenos Aires",
-                            Pais = "Argentina",
-                            URL_image = "https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/07/03201757/Ciudades-mas-caras-de-America-Latina-Buenos-Aires.jpg"
+                            Nombre = "EjemploDestino2",
+                            Pais = "EjemploPais",
+                            URL_image = "https://ejemplo.com/destino2.jpg"
                         });
                 });
 
@@ -372,22 +302,144 @@ namespace TurismoBackend.Migrations
                         new
                         {
                             Id = 1,
-                            Descripcion = "Viaje a las Cataratas del Iguazú con actividades de aventura.",
+                            Descripcion = "Ejemplo de itinerario 1",
                             Eliminado = false,
                             FechaFin = new DateTime(2025, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaInicio = new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdDestino = 1,
-                            Nombre = "Aventura en las Cataratas"
+                            Nombre = "EjemploItinerario1"
                         },
                         new
                         {
                             Id = 2,
-                            Descripcion = "Viaje a Buenos Aires con actividades culturales.",
+                            Descripcion = "Ejemplo de itinerario 2",
                             Eliminado = false,
                             FechaFin = new DateTime(2025, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaInicio = new DateTime(2025, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdDestino = 2,
-                            Nombre = "Cultura en Buenos Aires"
+                            Nombre = "EjemploItinerario2"
+                        });
+                });
+
+            modelBuilder.Entity("TurismoServices.Models.RegistroVenta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdActividad")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdDestino")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdItinerario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumPersona")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Transporte")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdActividad");
+
+                    b.HasIndex("IdDestino");
+
+                    b.HasIndex("IdItinerario");
+
+                    b.HasIndex("VentaId");
+
+                    b.ToTable("RegistrosVenta");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IdActividad = 1,
+                            IdDestino = 1,
+                            IdItinerario = 1,
+                            NumPersona = 2,
+                            Transporte = 0,
+                            VentaId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IdActividad = 2,
+                            IdDestino = 2,
+                            IdItinerario = 2,
+                            NumPersona = 4,
+                            Transporte = 1,
+                            VentaId = 2
+                        });
+                });
+
+            modelBuilder.Entity("TurismoServices.Models.Venta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConfirmacionPago")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("EstadoReservacion")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaPago")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("FechaReservacion")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("MetodoPago")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Ventas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClienteId = 1,
+                            ConfirmacionPago = 1,
+                            Eliminado = false,
+                            EstadoReservacion = 0,
+                            FechaPago = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3220),
+                            FechaReservacion = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3202),
+                            MetodoPago = 0,
+                            Total = 1500.00m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClienteId = 2,
+                            ConfirmacionPago = 0,
+                            Eliminado = false,
+                            EstadoReservacion = 1,
+                            FechaPago = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3224),
+                            FechaReservacion = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3223),
+                            MetodoPago = 1,
+                            Total = 2500.00m
                         });
                 });
 
@@ -401,42 +453,71 @@ namespace TurismoBackend.Migrations
                     b.Navigation("Destino");
                 });
 
-            modelBuilder.Entity("TurismoServices.Models.Cliente", b =>
-                {
-                    b.HasOne("TurismoServices.Models.Actividad", "Actividad")
-                        .WithMany()
-                        .HasForeignKey("ActividadId");
-
-                    b.HasOne("TurismoServices.Models.Destino", "Destino")
-                        .WithMany()
-                        .HasForeignKey("DestinoId");
-
-                    b.HasOne("TurismoServices.Models.Itinerario", "Itinerario")
-                        .WithMany()
-                        .HasForeignKey("ItinerarioId");
-
-                    b.Navigation("Actividad");
-
-                    b.Navigation("Destino");
-
-                    b.Navigation("Itinerario");
-                });
-
             modelBuilder.Entity("TurismoServices.Models.Itinerario", b =>
                 {
                     b.HasOne("TurismoServices.Models.Destino", "Destino")
-                        .WithMany("Itinenario")
+                        .WithMany("Itinerario")
                         .HasForeignKey("IdDestino")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Destino");
                 });
 
+            modelBuilder.Entity("TurismoServices.Models.RegistroVenta", b =>
+                {
+                    b.HasOne("TurismoServices.Models.Actividad", "Actividad")
+                        .WithMany()
+                        .HasForeignKey("IdActividad");
+
+                    b.HasOne("TurismoServices.Models.Destino", "Destino")
+                        .WithMany()
+                        .HasForeignKey("IdDestino");
+
+                    b.HasOne("TurismoServices.Models.Itinerario", "Itinerario")
+                        .WithMany()
+                        .HasForeignKey("IdItinerario");
+
+                    b.HasOne("TurismoServices.Models.Venta", "Venta")
+                        .WithMany("Registros")
+                        .HasForeignKey("VentaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Actividad");
+
+                    b.Navigation("Destino");
+
+                    b.Navigation("Itinerario");
+
+                    b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("TurismoServices.Models.Venta", b =>
+                {
+                    b.HasOne("TurismoServices.Models.Cliente", "Cliente")
+                        .WithMany("Ventas")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("TurismoServices.Models.Cliente", b =>
+                {
+                    b.Navigation("Ventas");
+                });
+
             modelBuilder.Entity("TurismoServices.Models.Destino", b =>
                 {
                     b.Navigation("Actividad");
 
-                    b.Navigation("Itinenario");
+                    b.Navigation("Itinerario");
+                });
+
+            modelBuilder.Entity("TurismoServices.Models.Venta", b =>
+                {
+                    b.Navigation("Registros");
                 });
 #pragma warning restore 612, 618
         }

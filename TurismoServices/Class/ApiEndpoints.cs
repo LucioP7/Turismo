@@ -8,6 +8,8 @@ namespace TurismoServices.Class
         public static string Cliente { get; set; } = "clientes";
         public static string Destino { get; set; } = "destinos";
         public static string Itinerario { get; set; } = "itinerarios";
+        public static string Venta { get; set; } = "ventas";
+        public static string RegistroVenta { get; set; } = "registrosventas";
 
         public static string GetEndpoint(string name)
         {
@@ -18,6 +20,8 @@ namespace TurismoServices.Class
                 nameof(Destino) => Destino,
                 nameof(Itinerario) => Itinerario,
                 nameof(Cliente) => Cliente,
+                nameof(Venta) => Venta,
+                nameof(RegistroVenta) => RegistroVenta,
 
                 _ => throw new ArgumentException($"Endpoint '{name}' no está definido.")
             };

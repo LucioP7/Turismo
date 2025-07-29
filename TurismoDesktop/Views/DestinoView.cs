@@ -147,11 +147,11 @@ namespace TurismoDesktop.Views
                 Itinerario = IdItinerario.HasValue
                     ? new List<Itinerario>
                       {
-              new Itinerario
-              {
-                  Id = IdItinerario.Value,
-                  Nombre = itinerarioSeleccionado?.Nombre
-              }
+                          new Itinerario
+                          {
+                              Id = IdItinerario.Value,
+                              Nombre = itinerarioSeleccionado?.Nombre
+                          }
                       }
                     : new List<Itinerario>(),
                 Eliminado = false

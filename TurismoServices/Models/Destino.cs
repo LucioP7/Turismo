@@ -19,6 +19,12 @@ namespace TurismoServices.Models
         public virtual ICollection<Itinerario> Itinerario { get; set; } = new List<Itinerario>();
         public virtual ICollection<Actividad> Actividad { get; set; } = new List<Actividad>();
         public bool Eliminado { get; set; } = false;
+        public override string ToString()
+        {
+            return Nombre;
+        }
+        
+        
     }
 
 
