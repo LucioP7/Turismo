@@ -16,7 +16,7 @@ namespace TurismoServices.Models
         public string Categoria { get; set; }
         public string Pais { get; set; }
 
-        public virtual ICollection<Itinerario> Itinenario { get; set; } = new List<Itinerario>();
+        public virtual ICollection<Itinerario> Itinerario { get; set; } = new List<Itinerario>();
         public virtual ICollection<Actividad> Actividad { get; set; } = new List<Actividad>();
         public bool Eliminado { get; set; } = false;
     }

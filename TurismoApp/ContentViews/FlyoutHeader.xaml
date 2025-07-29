@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TurismoApp.ContenViews.FlyoutHeader">
+
+    <Grid BackgroundColor="Transparent" Padding="0">
+        <Image Aspect="AspectFill" 
+               Source="https://s0.smartresize.com/wallpaper/131/684/HD-wallpaper-argentina-sur-bandera-bariloche-nieve.jpg"
+               HeightRequest="450"
+               Opacity="0.3" />
+        <VerticalStackLayout>
+            <Label Text="Turismos en Argentina" 
+                   TextColor="White" 
+                   FontAttributes="Bold" 
+                   FontSize="28"
+                   Margin="0,40"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+            <Label Text="Explora lo mejor de nuestro país" 
+                   TextColor="#d4cdc5"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

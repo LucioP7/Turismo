@@ -121,9 +121,9 @@
     <value>true</value>
   </data>
   <data name="UrlApi" xml:space="preserve">
-    <value>https://turismobackend.azurewebsites.net/</value>
+    <value>https://turismobackend.azurewebsites.net/api/</value>
   </data>
   <data name="UrlApiLocal" xml:space="preserve">
-    <value>https://localhost:7041/</value>
+    <value>https://localhost:7041/api/</value>
   </data>
 </root>

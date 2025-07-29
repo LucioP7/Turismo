@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TurismoApp.ViewModels"
+             x:Class="TurismoApp.Views.AddEditDestinoView"
+             Title="Agregar o Editar Destino">
+
+    <ContentPage.BindingContext>
+        <vm:AddEditDestinoViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="CadetBlue" Offset="0.0" />
+                <GradientStop Color="CornflowerBlue" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <ScrollView>
+            <VerticalStackLayout 
+            Padding="20" 
+            Spacing="20" 
+            BackgroundColor="#80000000">
+
+                <!-- Título -->
+                <Label 
+                Text="GESTION DESTINOS"
+                FontSize="Title"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                Margin="0,10" />
+
+                <!-- Nombre -->
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="Gainsboro" HasShadow="True">
+                    <Entry 
+                    Placeholder="Nombre"
+                    Text="{Binding Nombre}" 
+                    TextColor="Black"
+                    BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Descripción -->
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="Gainsboro" HasShadow="True">
+                    <Entry 
+                    Placeholder="Descripción"
+                    Text="{Binding Descripcion}" 
+                    TextColor="Black"
+                    BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Imagen -->
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="Gainsboro" HasShadow="True">
+                    <Entry 
+                    Placeholder="Imagen"
+                    Text="{Binding URLImage}" 
+                    TextColor="Black"
+                    BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Categoría -->
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="Gainsboro" HasShadow="True">
+                    <Entry 
+                    Placeholder="Categoría"
+                    Text="{Binding Categoria}" 
+                    TextColor="Black"
+                    BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- País -->
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="Gainsboro" HasShadow="True">
+                    <Entry 
+                    Placeholder="País"
+                    Text="{Binding Pais}" 
+                    TextColor="Black"
+                    BackgroundColor="Transparent" />
+                </Frame>
+
+                 <!--Itinerario--> 
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="DarkGray" HasShadow="True">
+                    <Picker 
+                        Title="Seleccione un Itinerario"
+                        ItemsSource="{Binding ListaItinerarios}" 
+                        ItemDisplayBinding="{Binding Name}" 
+                        SelectedItem="{Binding ItinerarioSelected}"
+                        TextColor="Black"
+                        BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Botones de Acción -->
+                <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                    <!-- Botón Guardar -->
+                    <Button 
+                    Text="Guardar"
+                    Command="{Binding GuardarDestinoCommand}"
+                    BackgroundColor="#459a96"
+                    TextColor="White"
+                    CornerRadius="25"
+                    WidthRequest="150"
+                    HeightRequest="50" />
+
+                    <!-- Botón Volver -->
+                    <Button 
+                    Text="Volver"
+                    Command="{Binding AtrasCommand}"
+                    BackgroundColor="#E0E0E0"
+                    TextColor="Black"
+                    CornerRadius="25"
+                    WidthRequest="150"
+                    HeightRequest="50" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

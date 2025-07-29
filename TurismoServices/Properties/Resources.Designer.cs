@@ -70,7 +70,7 @@ namespace TurismoServices.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://turismobackend.azurewebsites.net/.
+        ///   Busca una cadena traducida similar a https://turismobackend.azurewebsites.net/api/.
         /// </summary>
         internal static string UrlApi {
             get {
@@ -79,7 +79,7 @@ namespace TurismoServices.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://localhost:7041/.
+        ///   Busca una cadena traducida similar a https://localhost:7041/api/.
         /// </summary>
         internal static string UrlApiLocal {
             get {

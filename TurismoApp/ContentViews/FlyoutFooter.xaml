@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="TurismoApp.ContenViews.FlyoutFooter">
+
+    <VerticalStackLayout BackgroundColor="DarkCyan" Padding="10, 20">
+        <StackLayout>
+            <Label Text="Aplicacion de Turismos"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   HorizontalOptions="Center" />
+            <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="Medium" />
+        </StackLayout>
+    </VerticalStackLayout>
+
+</ContentView>

@@ -3,11 +3,11 @@ namespace TurismoServices.Class
 {
     public static class ApiEndpoints
     {
-        public static string Actividad { get; set; } = "Actividades";
-        public static string Administrador { get; set; } = "Administradores";
-        public static string Cliente { get; set; } = "Clientes";
-        public static string Destino { get; set; } = "Destinos";
-        public static string Itinerario { get; set; } = "Itinerarios";
+        public static string Actividad { get; set; } = "actividades";
+        public static string Administrador { get; set; } = "administradores";
+        public static string Cliente { get; set; } = "clientes";
+        public static string Destino { get; set; } = "destinos";
+        public static string Itinerario { get; set; } = "itinerarios";
 
         public static string GetEndpoint(string name)
         {

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TurismoApp.ViewModels"
+             x:Class="TurismoApp.Views.RegistrarseView"
+             Title="Crear Cuenta">
+
+    <ContentPage.BindingContext>
+        <viewmodels:RegistrarseViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.BackgroundImageSource>
+        <FileImageSource File="background.jpg" />
+    </ContentPage.BackgroundImageSource>
+
+    <Grid>
+        <Image Source="https://viajes.nationalgeographic.com.es/medio/2017/01/12/age-qpx-63586091_05f6fe68.jpg" Aspect="AspectFill" Opacity="0.3"/>
+        <ScrollView>
+            <VerticalStackLayout Margin="20" Spacing="15" BackgroundColor="#80000000">
+
+                <!-- Título de la vista -->
+                <Label 
+                FontSize="Large" 
+                FontAttributes="Bold" 
+                TextColor="#bed6c7"
+                Text="CREAR CUENTA - REGISTRARSE"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Start" 
+                Margin="0,20" />
+
+                <!-- Formulario en un Grid -->
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" 
+                  ColumnDefinitions="2*,3*" 
+                  Padding="10"
+                  RowSpacing="20">
+                    <!-- Apellido y Nombre -->
+                    <Label Grid.Row="0" Grid.Column="0" 
+                    Text="Apellido y Nombre:"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="End"
+                    Margin="5,0"
+                    TextColor="#d4cdc5"/>
+                    <Entry Grid.Row="0" Grid.Column="1" 
+                    Text="{Binding Nombre}" 
+                    Placeholder="Ingrese su nombre completo"
+                    Margin="5"
+                    BackgroundColor="SeaShell"
+                    TextColor="Black"
+                    HeightRequest="40" />
+
+                    <!-- Email -->
+                    <Label Grid.Row="1" Grid.Column="0" 
+                    Text="Email:"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="End"
+                    Margin="5,0"
+                    TextColor="#d4cdc5"/>
+                    <Entry Grid.Row="1" Grid.Column="1" 
+                    Text="{Binding Mail}" 
+                    Placeholder="Ingrese su email"
+                    Margin="5"
+                    BackgroundColor="SeaShell"
+                    TextColor="Black"
+                    HeightRequest="40" />
+
+                    <!-- Contraseña -->
+                    <Label Grid.Row="2" Grid.Column="0" 
+                    Text="Contraseña:"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="End"
+                    Margin="5,0"
+                    TextColor="#d4cdc5"/>
+                    <Entry Grid.Row="2" Grid.Column="1" 
+                    Text="{Binding Password}" 
+                    Placeholder="Ingrese su contraseña"
+                    Margin="5"
+                    BackgroundColor="SeaShell"
+                    TextColor="Black"
+                    IsPassword="True"
+                    HeightRequest="40" />
+
+                    <!-- Verificar Contraseña -->
+                    <Label Grid.Row="3" Grid.Column="0" 
+                    Text="Verificar Contraseña:"
+                    FontAttributes="Bold"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="End"
+                    Margin="5,0"
+                    TextColor="#d4cdc5"/>
+                    <Entry Grid.Row="3" Grid.Column="1" 
+                    Text="{Binding VerifyPassword}" 
+                    Placeholder="Vuelva a ingresar su contraseña"
+                    Margin="5"
+                    BackgroundColor="SeaShell"
+                    TextColor="Black"
+                    IsPassword="True"
+                    HeightRequest="40" />
+                </Grid>
+
+                <!-- Botón de Registro -->
+                <Button 
+                Text="Registrarse"
+                Command="{Binding RegistrarseCommand}"
+                TextColor="White"
+                BackgroundColor="#142f30"
+                FontSize="Medium"
+                CornerRadius="10"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                WidthRequest="150"
+                HeightRequest="50"
+                Margin="0,20" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

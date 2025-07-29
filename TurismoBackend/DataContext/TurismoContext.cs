@@ -34,7 +34,7 @@ namespace TurismoBackend.DataContext
             //Configurar la relación uno a muchos entre Destino y pfItinerary
             modelBuilder.Entity<Itinerario>()
                 .HasOne(i => i.Destino)
-                .WithMany(d => d.Itinenario)
+                .WithMany(d => d.Itinerario)
                 .HasForeignKey(i => i.IdDestino)
                 .OnDelete(DeleteBehavior.Restrict);
             

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TurismoApp.MainPage"
+             xmlns:viewmodels="clr-namespace:TurismoApp.ViewModels">
+
+    <Grid>
+        <Image Source="https://wallpapers.com/images/high/travel-and-tourism-r8x7xgzdnl5ieof5.webp" Aspect="AspectFill" Opacity="0.3"/>
+        <ScrollView>
+            <VerticalStackLayout Padding="30,30" Spacing="25" BackgroundColor="#80000000">
+
+                <Label
+                    Text="¡Bienvenido a Turismos Argentina App!"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    TextColor="#34baab"
+                    HorizontalTextAlignment="Center"
+                    SemanticProperties.HeadingLevel="Level1" />
+
+                <CollectionView ItemsSource="{Binding Features}" HorizontalScrollBarVisibility="Never">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame BorderColor="#34baab" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#459a96">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Title}" FontSize="Medium" TextColor="White" HorizontalTextAlignment="Center" Margin="0,5"/>
+                                        <Button Text="Explorar" BackgroundColor="White" TextColor="#459a96" CornerRadius="10"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

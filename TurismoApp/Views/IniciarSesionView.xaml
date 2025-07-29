@@ -1,0 +1,53 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TurismoApp.ViewModels"
+             x:Class="TurismoApp.Views.IniciarSesionView"
+             Title="Iniciar Sesión"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModels:IniciarSesionViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Image Source="https://viajes.nationalgeographic.com.es/medio/2017/01/12/age-qpx-63586091_05f6fe68.jpg" Aspect="AspectFill" Opacity="0.8"/>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="#80000000">
+
+                <!-- Título -->
+                <Label Text="TURISMOS ARG"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#bed6c7"
+                       Margin="0,10"/>
+
+                    <!-- Formulario de inicio de sesión -->
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="3*,5*" RowSpacing="20" Padding="10">
+
+                        <!-- Email -->
+                        <Label Grid.Row="0" Grid.Column="0" Text="Email:" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="#ffffff"/>
+                        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Mail}" Placeholder="Ingrese su email" BackgroundColor="#ffffff" TextColor="Black" HeightRequest="40"/>
+
+                        <!-- Contraseña -->
+                        <Label Grid.Row="1" Grid.Column="0" Text="Contraseña:" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="#ffffff"/>
+                        <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Password}" Placeholder="Ingrese su contraseña" IsPassword="True" BackgroundColor="#ffffff" TextColor="Black" HeightRequest="40"/>
+
+                        <!-- Recordar Contraseña -->
+                        <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding RememberPassword}" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="Recordar contraseña" VerticalTextAlignment="Center" TextColor="#ffffff"/>
+
+                    </Grid>
+
+                    <!-- Botones de acción -->
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
+
+                        <Button Text="Iniciar sesión" Command="{Binding LoginCommand}" TextColor="White" BackgroundColor="#459a96" CornerRadius="10" HeightRequest="50" FontSize="Medium"/>
+                    <Button Text="Registrarse" Command="{Binding RegisterCommand}" TextColor="#b9d7d9" BackgroundColor="#142f30" BorderWidth="1" CornerRadius="10" HeightRequest="50" FontSize="Medium"/>
+
+                    </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
