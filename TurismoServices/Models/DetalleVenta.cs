@@ -6,7 +6,7 @@ namespace TurismoServices.Models
     {
         public int Id { get; set; }
 
-        public int VentaId { get; set; }
+        public int IdVenta { get; set; }
         public virtual Venta Venta { get; set; }
 
         public int? IdDestino { get; set; }

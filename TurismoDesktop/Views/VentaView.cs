@@ -202,8 +202,8 @@ namespace TurismoDesktop.Views
 
             ventaSeleccionada = v;
 
-            CBoxCliente.SelectedValue = v.ClienteId;
-            CBoxItinerario.SelectedValue = v.ItinerarioId;
+            CBoxCliente.SelectedValue = v.IdCliente;
+            CBoxItinerario.SelectedValue = v.IdItinerario;
 
             // Cargar actividades por destino y seleccionar la actividad correspondiente
             if (v.Itinerario != null && v.Itinerario.IdDestino.HasValue)
@@ -212,7 +212,7 @@ namespace TurismoDesktop.Views
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        CBoxActividad.SelectedValue = v.ActividadId;
+                        CBoxActividad.SelectedValue = v.IdActividad;
                     });
                 });
             }
@@ -290,9 +290,9 @@ namespace TurismoDesktop.Views
                 var venta = new Venta
                 {
                     Id = ventaSeleccionada?.Id ?? 0,
-                    ClienteId = (int)CBoxCliente.SelectedValue,
-                    ItinerarioId = (int)CBoxItinerario.SelectedValue,
-                    ActividadId = (int)CBoxActividad.SelectedValue,
+                    IdCliente = (int)CBoxCliente.SelectedValue,
+                    IdItinerario = (int)CBoxItinerario.SelectedValue,
+                    IdActividad = (int)CBoxActividad.SelectedValue,
                     MetodoPago = (MetodoPagoEnum)CBoxMetodoEnum.SelectedItem,
                     Transporte = (PreferenciaTransporteEnum)CBoxTransporte.SelectedItem,
                     FechaReservacion = dtpReserva.Value.Date,

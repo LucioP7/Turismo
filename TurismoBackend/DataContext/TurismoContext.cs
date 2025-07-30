@@ -32,14 +32,28 @@ namespace TurismoBackend.DataContext
             modelBuilder.Entity<Venta>()
                 .HasOne(v => v.Cliente)
                 .WithMany(c => c.Ventas)
-                .HasForeignKey(v => v.ClienteId)
+                .HasForeignKey(v => v.IdCliente)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Venta -> Actividad (1:1)
+            modelBuilder.Entity<Venta>()
+                .HasOne(v => v.Actividad)
+                .WithMany() // Asumiendo que no hay propiedad "Ventas" en Actividad
+                .HasForeignKey(v => v.IdActividad)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Venta -> Itinerario (1:1)
+            modelBuilder.Entity<Venta>()
+                .HasOne(v => v.Itinerario)
+                .WithMany() // Asumiendo que no hay propiedad "Ventas" en Itinerario
+                .HasForeignKey(v => v.IdItinerario)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Venta -> RegistroVenta (1:N)
             modelBuilder.Entity<DetalleVenta>()
                 .HasOne(r => r.Venta)
                 .WithMany(v => v.DetallesVenta)
-                .HasForeignKey(r => r.VentaId)
+                .HasForeignKey(r => r.IdVenta)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // RegistroVenta -> Destino (opcional)
@@ -202,7 +216,7 @@ namespace TurismoBackend.DataContext
                 new Venta
                 {
                     Id = 1,
-                    ClienteId = 1,
+                    IdCliente = 1,
                     FechaReservacion = DateTime.Now,
                     MetodoPago = MetodoPagoEnum.Efectivo,
                     Transporte = PreferenciaTransporteEnum.Automóvil,
@@ -210,13 +224,13 @@ namespace TurismoBackend.DataContext
                     NumPersona = 2,
                     Total = 1500,
                     Eliminado = false,
-                    ItinerarioId = 1,
-                    ActividadId = 1
+                    IdItinerario = 1,
+                    IdActividad = 1
                 },
                 new Venta
                 {
                     Id = 2,
-                    ClienteId = 2,
+                    IdCliente = 2,
                     FechaReservacion = DateTime.Now,
                     MetodoPago = MetodoPagoEnum.Efectivo,
                     Transporte = PreferenciaTransporteEnum.Automóvil,
@@ -224,8 +238,8 @@ namespace TurismoBackend.DataContext
                     NumPersona = 2,
                     Total = 1500,
                     Eliminado = false,
-                    ItinerarioId = 2,
-                    ActividadId = 2
+                    IdItinerario = 2,
+                    IdActividad = 2
                 }
             );
 
@@ -234,7 +248,7 @@ namespace TurismoBackend.DataContext
                 new DetalleVenta
                 {
                     Id = 1,
-                    VentaId = 1,
+                    IdVenta = 1,
                     IdDestino = 1,
                     IdActividad = 1,
                     IdItinerario = 1,
@@ -242,7 +256,7 @@ namespace TurismoBackend.DataContext
                 new DetalleVenta
                 {
                     Id = 2,
-                    VentaId = 2,
+                    IdVenta = 2,
                     IdDestino = 2,
                     IdActividad = 2,
                     IdItinerario = 2,

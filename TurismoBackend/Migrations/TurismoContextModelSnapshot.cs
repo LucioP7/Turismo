@@ -279,7 +279,7 @@ namespace TurismoBackend.Migrations
                     b.Property<int?>("IdItinerario")
                         .HasColumnType("int");
 
-                    b.Property<int>("VentaId")
+                    b.Property<int>("IdVenta")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -290,7 +290,7 @@ namespace TurismoBackend.Migrations
 
                     b.HasIndex("IdItinerario");
 
-                    b.HasIndex("VentaId");
+                    b.HasIndex("IdVenta");
 
                     b.ToTable("DetallesVentas");
 
@@ -301,7 +301,7 @@ namespace TurismoBackend.Migrations
                             IdActividad = 1,
                             IdDestino = 1,
                             IdItinerario = 1,
-                            VentaId = 1
+                            IdVenta = 1
                         },
                         new
                         {
@@ -309,7 +309,7 @@ namespace TurismoBackend.Migrations
                             IdActividad = 2,
                             IdDestino = 2,
                             IdItinerario = 2,
-                            VentaId = 2
+                            IdVenta = 2
                         });
                 });
 
@@ -373,9 +373,6 @@ namespace TurismoBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
@@ -384,6 +381,15 @@ namespace TurismoBackend.Migrations
 
                     b.Property<DateTime>("FechaReservacion")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("IdActividad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdItinerario")
+                        .HasColumnType("int");
 
                     b.Property<int>("MetodoPago")
                         .HasColumnType("int");
@@ -399,7 +405,11 @@ namespace TurismoBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("IdActividad");
+
+                    b.HasIndex("IdCliente");
+
+                    b.HasIndex("IdItinerario");
 
                     b.ToTable("Ventas");
 
@@ -407,10 +417,12 @@ namespace TurismoBackend.Migrations
                         new
                         {
                             Id = 1,
-                            ClienteId = 1,
                             Eliminado = false,
-                            FechaPago = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1398),
-                            FechaReservacion = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1382),
+                            FechaPago = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(881),
+                            FechaReservacion = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(867),
+                            IdActividad = 1,
+                            IdCliente = 1,
+                            IdItinerario = 1,
                             MetodoPago = 0,
                             NumPersona = 2,
                             Total = 1500m,
@@ -419,10 +431,12 @@ namespace TurismoBackend.Migrations
                         new
                         {
                             Id = 2,
-                            ClienteId = 2,
                             Eliminado = false,
-                            FechaPago = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1403),
-                            FechaReservacion = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1402),
+                            FechaPago = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(886),
+                            FechaReservacion = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(885),
+                            IdActividad = 2,
+                            IdCliente = 2,
+                            IdItinerario = 2,
                             MetodoPago = 0,
                             NumPersona = 2,
                             Total = 1500m,
@@ -456,7 +470,7 @@ namespace TurismoBackend.Migrations
 
                     b.HasOne("TurismoServices.Models.Venta", "Venta")
                         .WithMany("DetallesVenta")
-                        .HasForeignKey("VentaId")
+                        .HasForeignKey("IdVenta")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -481,13 +495,29 @@ namespace TurismoBackend.Migrations
 
             modelBuilder.Entity("TurismoServices.Models.Venta", b =>
                 {
-                    b.HasOne("TurismoServices.Models.Cliente", "Cliente")
-                        .WithMany("Ventas")
-                        .HasForeignKey("ClienteId")
+                    b.HasOne("TurismoServices.Models.Actividad", "Actividad")
+                        .WithMany()
+                        .HasForeignKey("IdActividad")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("TurismoServices.Models.Cliente", "Cliente")
+                        .WithMany("Ventas")
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TurismoServices.Models.Itinerario", "Itinerario")
+                        .WithMany()
+                        .HasForeignKey("IdItinerario")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Actividad");
+
                     b.Navigation("Cliente");
+
+                    b.Navigation("Itinerario");
                 });
 
             modelBuilder.Entity("TurismoServices.Models.Cliente", b =>

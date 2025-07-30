@@ -10,7 +10,7 @@ namespace TurismoServices.Models
         public int Id { get; set; }
 
         [Required]
-        public int ClienteId { get; set; }
+        public int IdCliente { get; set; }
         public virtual Cliente Cliente { get; set; }
         public DateTime FechaReservacion { get; set; }
         public MetodoPagoEnum MetodoPago { get; set; }
@@ -19,9 +19,9 @@ namespace TurismoServices.Models
         public int NumPersona { get; set; }
         public decimal Total { get; set; }
         public bool Eliminado { get; set; } = false;
-        public int ItinerarioId { get; set; }
+        public int IdItinerario { get; set; }
         public Itinerario Itinerario { get; set; }
-        public int ActividadId { get; set; }
+        public int IdActividad { get; set; }
         public Actividad Actividad { get; set; }
 
 

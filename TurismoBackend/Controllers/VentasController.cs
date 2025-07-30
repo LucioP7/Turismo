@@ -104,9 +104,9 @@ namespace TurismoBackend.Controllers
             return NoContent();
         }
 
-        // GET: api/Ventas/Filtrar?clienteId=1&destinoId=2
+        // GET: api/Ventas/Filtrar?IdCliente=1&destinoId=2
         [HttpGet("Filtrar")]
-        public async Task<ActionResult<IEnumerable<Venta>>> FiltrarVentas([FromQuery] int? clienteId, [FromQuery] int? destinoId)
+        public async Task<ActionResult<IEnumerable<Venta>>> FiltrarVentas([FromQuery] int? IdCliente, [FromQuery] int? destinoId)
         {
             var query = _context.Ventas
                 .Include(v => v.Cliente)
@@ -116,8 +116,8 @@ namespace TurismoBackend.Controllers
                     .ThenInclude(dv => dv.Destino)
                 .AsQueryable();
 
-            if (clienteId.HasValue)
-                query = query.Where(v => v.ClienteId == clienteId.Value);
+            if (IdCliente.HasValue)
+                query = query.Where(v => v.IdCliente == IdCliente.Value);
 
             if (destinoId.HasValue)
                 query = query.Where(v =>

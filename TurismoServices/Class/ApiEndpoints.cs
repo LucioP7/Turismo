@@ -1,4 +1,3 @@
-
 namespace TurismoServices.Class
 {
     public static class ApiEndpoints
@@ -13,16 +12,15 @@ namespace TurismoServices.Class
 
         public static string GetEndpoint(string name)
         {
-            return name switch
+            return name.ToLower() switch
             {
-                nameof(Actividad) => Actividad,
-                nameof(Administrador) => Administrador,
-                nameof(Destino) => Destino,
-                nameof(Itinerario) => Itinerario,
-                nameof(Cliente) => Cliente,
-                nameof(Venta) => Venta,
-                nameof(DetalleVenta) => DetalleVenta,
-
+                "actividad" => Actividad,
+                "administrador" => Administrador,
+                "cliente" => Cliente,
+                "destino" => Destino,
+                "itinerario" => Itinerario,
+                "venta" => Venta,
+                "detalleventa" => DetalleVenta,
                 _ => throw new ArgumentException($"Endpoint '{name}' no está definido.")
             };
         }

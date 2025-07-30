@@ -11,26 +11,28 @@ namespace TurismoServices.Services
 
         public async Task<List<Venta>> GetAllWithDetailsAsync()
         {
-            // Debes tener un endpoint en tu API que devuelva las ventas con detalles
-            var response = await client.GetAsync($"{_endpoint}/detallesventas");
+            // Cambiado: usa el endpoint principal que ya incluye detalles
+            var response = await client.GetAsync($"{_endpoint}");
             var content = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
-                throw new ApplicationException(content);
+                throw new ApplicationException($"Error al obtener ventas: {content}");
 
-            return JsonSerializer.Deserialize<List<Venta>>(content, options);
+            return JsonSerializer.Deserialize<List<Venta>>(content, options)
+                ?? new List<Venta>();
         }
 
         public async Task<Venta> AddVentaAsync(Venta venta, List<DetalleVenta> registros)
         {
             venta.DetallesVenta = registros;
+
             var response = await client.PostAsJsonAsync(_endpoint, venta);
             var content = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
                 throw new ApplicationException($"Error API ({response.StatusCode}): {content}");
 
-            return JsonSerializer.Deserialize<Venta>(content, options);
+            return JsonSerializer.Deserialize<Venta>(content, options)!;
         }
     }
 }
