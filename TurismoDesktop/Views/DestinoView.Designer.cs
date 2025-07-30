@@ -354,7 +354,7 @@
             MinimizeBox = false;
             Name = "DestinoView";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Destino";
+            Text = "Destinos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);

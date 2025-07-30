@@ -40,5 +40,6 @@ namespace TurismoDesktop.Views
             ClienteView clienteView = new ClienteView();
             clienteView.ShowDialog();
         }
+
     }
 }

@@ -166,7 +166,7 @@
             txtPais.AutoEllipsis = true;
             txtPais.AutoSize = true;
             txtPais.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            txtPais.Location = new Point(441, 96);
+            txtPais.Location = new Point(431, 96);
             txtPais.Name = "txtPais";
             txtPais.Size = new Size(36, 19);
             txtPais.TabIndex = 31;
@@ -176,7 +176,7 @@
             // 
             txtProvincia.AutoSize = true;
             txtProvincia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            txtProvincia.Location = new Point(420, 55);
+            txtProvincia.Location = new Point(414, 55);
             txtProvincia.Name = "txtProvincia";
             txtProvincia.Size = new Size(72, 19);
             txtProvincia.TabIndex = 30;
@@ -439,7 +439,7 @@
             MinimizeBox = false;
             Name = "ClienteView";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Destino";
+            Text = "Clientes";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);

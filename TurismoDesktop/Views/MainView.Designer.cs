@@ -53,8 +53,8 @@
             // 
             cRUDToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { destinoToolStripMenuItem1, actividadToolStripMenuItem1, toolStripMenuItem3, clienteToolStripMenuItem });
             cRUDToolStripMenuItem.Name = "cRUDToolStripMenuItem";
-            cRUDToolStripMenuItem.Size = new Size(50, 20);
-            cRUDToolStripMenuItem.Text = "CRUD";
+            cRUDToolStripMenuItem.Size = new Size(49, 20);
+            cRUDToolStripMenuItem.Text = "Datos";
             // 
             // destinoToolStripMenuItem1
             // 
@@ -112,7 +112,7 @@
             MainMenuStrip = menuStrip1;
             Name = "MainView";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MainView";
+            Text = "Menu Principal";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

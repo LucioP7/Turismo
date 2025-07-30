@@ -6,11 +6,6 @@ using TurismoServices.Interfaces;
 namespace TurismoServices.Services
 {
     public class GenericService<T> : IGenericService<T> where T : class
-        // El error principal es que la interfaz IGenericService<T> define el método GetAllDeletedAsync(string? filtro),
-        // pero la clase GenericService<T> solo implementa GetAllDeletedAsync() sin parámetro.
-        // Debes agregar la implementación correcta con el parámetro 'filtro' para cumplir con la interfaz.
-        // Además, hay problemas de posible acceso a null en UpdateAsync al acceder a la propiedad "Id" de entity sin validación.
-        // Soy GitHub Copilot, un asistente de programación de IA. ¿En qué puedo ayudarte con el desarrollo de software?
     {
         protected readonly HttpClient client;
         protected readonly JsonSerializerOptions options;

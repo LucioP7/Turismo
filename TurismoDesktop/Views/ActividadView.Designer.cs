@@ -364,7 +364,7 @@
             MinimizeBox = false;
             Name = "ActividadView";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Actividad";
+            Text = "Actividades";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);
