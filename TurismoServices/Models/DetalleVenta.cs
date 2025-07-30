@@ -2,7 +2,7 @@
 
 namespace TurismoServices.Models
 {
-    public class RegistroVenta
+    public class DetalleVenta
     {
         public int Id { get; set; }
 
@@ -18,7 +18,6 @@ namespace TurismoServices.Models
         public int? IdItinerario { get; set; }
         public virtual Itinerario Itinerario { get; set; }
 
-        public PreferenciaTransporteEnum Transporte { get; set; }
-        public int NumPersona { get; set; }
+
     }
 }

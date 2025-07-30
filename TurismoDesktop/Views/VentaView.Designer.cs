@@ -1,6 +1,6 @@
 ﻿namespace TurismoDesktop.Views
 {
-    partial class ClienteView
+    partial class VentaView
     {
         /// <summary>
         /// Required designer variable.
@@ -32,30 +32,30 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            dataGridClienteView = new DataGridView();
+            dataGridVentaView = new DataGridView();
             tabPageAddEdit = new TabPage();
-            textBox1 = new TextBox();
-            txtPais = new Label();
-            txtProvincia = new Label();
+            nudCanti = new NumericUpDown();
+            label4 = new Label();
+            gtpFechaPago = new DateTimePicker();
+            dtpReserva = new DateTimePicker();
+            CBoxTransporte = new ComboBox();
+            CBoxMetodoEnum = new ComboBox();
+            CBoxCliente = new ComboBox();
             label10 = new Label();
-            txtCiudad = new TextBox();
-            textBox5 = new TextBox();
-            dtpNac = new DateTimePicker();
-            sad = new Label();
-            txtTelfdsadasefono = new Label();
-            txtTelefono = new TextBox();
-            txtDireccion = new TextBox();
             btnCancelar = new Button();
             btnGuardar = new Button();
-            txtEmail = new TextBox();
+            label8 = new Label();
+            txtTotal = new TextBox();
             label7 = new Label();
-            txtDni = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            label4 = new Label();
             label3 = new Label();
-            txtNombre = new TextBox();
-            txtApellido = new TextBox();
+            labelDestino = new Label();
+            txtDestino = new TextBox();
+            CBoxItinerario = new ComboBox();
+            labelItinerario = new Label();
+            CBoxActividad = new ComboBox();
+            labelActividad = new Label();
             label2 = new Label();
             txtFiltro = new TextBox();
             btnAgregar = new Button();
@@ -65,8 +65,9 @@
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridClienteView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridVentaView).BeginInit();
             tabPageAddEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudCanti).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -85,9 +86,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(11, 17);
             label1.Name = "label1";
-            label1.Size = new Size(129, 36);
+            label1.Size = new Size(106, 36);
             label1.TabIndex = 0;
-            label1.Text = "CLIENTE";
+            label1.Text = "VENTA";
             // 
             // tabControl1
             // 
@@ -101,7 +102,7 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(dataGridClienteView);
+            tabPage1.Controls.Add(dataGridVentaView);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -110,43 +111,43 @@
             tabPage1.Text = "Lista";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dataGridClienteView
+            // dataGridVentaView
             // 
-            dataGridClienteView.AllowUserToAddRows = false;
-            dataGridClienteView.AllowUserToDeleteRows = false;
-            dataGridClienteView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridClienteView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridClienteView.Dock = DockStyle.Fill;
-            dataGridClienteView.Location = new Point(3, 3);
-            dataGridClienteView.Name = "dataGridClienteView";
-            dataGridClienteView.ReadOnly = true;
-            dataGridClienteView.Size = new Size(786, 280);
-            dataGridClienteView.TabIndex = 1;
+            dataGridVentaView.AllowUserToAddRows = false;
+            dataGridVentaView.AllowUserToDeleteRows = false;
+            dataGridVentaView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridVentaView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridVentaView.Dock = DockStyle.Fill;
+            dataGridVentaView.Location = new Point(3, 3);
+            dataGridVentaView.Name = "dataGridVentaView";
+            dataGridVentaView.ReadOnly = true;
+            dataGridVentaView.Size = new Size(786, 280);
+            dataGridVentaView.TabIndex = 1;
             // 
             // tabPageAddEdit
             // 
-            tabPageAddEdit.Controls.Add(textBox1);
-            tabPageAddEdit.Controls.Add(txtPais);
-            tabPageAddEdit.Controls.Add(txtProvincia);
+            tabPageAddEdit.Controls.Add(nudCanti);
+            tabPageAddEdit.Controls.Add(label4);
+            tabPageAddEdit.Controls.Add(gtpFechaPago);
+            tabPageAddEdit.Controls.Add(dtpReserva);
+            tabPageAddEdit.Controls.Add(CBoxTransporte);
+            tabPageAddEdit.Controls.Add(CBoxMetodoEnum);
+            tabPageAddEdit.Controls.Add(CBoxCliente);
             tabPageAddEdit.Controls.Add(label10);
-            tabPageAddEdit.Controls.Add(txtCiudad);
-            tabPageAddEdit.Controls.Add(textBox5);
-            tabPageAddEdit.Controls.Add(dtpNac);
-            tabPageAddEdit.Controls.Add(sad);
-            tabPageAddEdit.Controls.Add(txtTelfdsadasefono);
-            tabPageAddEdit.Controls.Add(txtTelefono);
-            tabPageAddEdit.Controls.Add(txtDireccion);
             tabPageAddEdit.Controls.Add(btnCancelar);
             tabPageAddEdit.Controls.Add(btnGuardar);
-            tabPageAddEdit.Controls.Add(txtEmail);
+            tabPageAddEdit.Controls.Add(label8);
+            tabPageAddEdit.Controls.Add(txtTotal);
             tabPageAddEdit.Controls.Add(label7);
-            tabPageAddEdit.Controls.Add(txtDni);
             tabPageAddEdit.Controls.Add(label6);
             tabPageAddEdit.Controls.Add(label5);
-            tabPageAddEdit.Controls.Add(label4);
             tabPageAddEdit.Controls.Add(label3);
-            tabPageAddEdit.Controls.Add(txtNombre);
-            tabPageAddEdit.Controls.Add(txtApellido);
+            tabPageAddEdit.Controls.Add(labelDestino);
+            tabPageAddEdit.Controls.Add(txtDestino);
+            tabPageAddEdit.Controls.Add(CBoxItinerario);
+            tabPageAddEdit.Controls.Add(labelItinerario);
+            tabPageAddEdit.Controls.Add(CBoxActividad);
+            tabPageAddEdit.Controls.Add(labelActividad);
             tabPageAddEdit.Location = new Point(4, 24);
             tabPageAddEdit.Name = "tabPageAddEdit";
             tabPageAddEdit.Padding = new Padding(3);
@@ -155,99 +156,73 @@
             tabPageAddEdit.Text = "Agregar/Editar";
             tabPageAddEdit.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // nudCanti
             // 
-            textBox1.Location = new Point(492, 92);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(286, 23);
-            textBox1.TabIndex = 32;
+            nudCanti.Location = new Point(146, 192);
+            nudCanti.Name = "nudCanti";
+            nudCanti.Size = new Size(120, 23);
+            nudCanti.TabIndex = 32;
+            nudCanti.UpDownAlign = LeftRightAlignment.Left;
             // 
-            // txtPais
+            // label4
             // 
-            txtPais.AutoEllipsis = true;
-            txtPais.AutoSize = true;
-            txtPais.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            txtPais.Location = new Point(431, 96);
-            txtPais.Name = "txtPais";
-            txtPais.Size = new Size(36, 19);
-            txtPais.TabIndex = 31;
-            txtPais.Text = "Pais";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label4.Location = new Point(7, 192);
+            label4.Name = "label4";
+            label4.Size = new Size(133, 19);
+            label4.TabIndex = 31;
+            label4.Text = "Cantidad personas";
             // 
-            // txtProvincia
+            // gtpFechaPago
             // 
-            txtProvincia.AutoSize = true;
-            txtProvincia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            txtProvincia.Location = new Point(414, 55);
-            txtProvincia.Name = "txtProvincia";
-            txtProvincia.Size = new Size(72, 19);
-            txtProvincia.TabIndex = 30;
-            txtProvincia.Text = "Provincia";
+            gtpFechaPago.Format = DateTimePickerFormat.Short;
+            gtpFechaPago.Location = new Point(102, 158);
+            gtpFechaPago.Name = "gtpFechaPago";
+            gtpFechaPago.Size = new Size(110, 23);
+            gtpFechaPago.TabIndex = 29;
+            // 
+            // dtpReserva
+            // 
+            dtpReserva.Format = DateTimePickerFormat.Short;
+            dtpReserva.Location = new Point(115, 58);
+            dtpReserva.Name = "dtpReserva";
+            dtpReserva.Size = new Size(110, 23);
+            dtpReserva.TabIndex = 28;
+            // 
+            // CBoxTransporte
+            // 
+            CBoxTransporte.FormattingEnabled = true;
+            CBoxTransporte.Location = new Point(94, 120);
+            CBoxTransporte.Name = "CBoxTransporte";
+            CBoxTransporte.Size = new Size(286, 23);
+            CBoxTransporte.TabIndex = 27;
+            // 
+            // CBoxMetodoEnum
+            // 
+            CBoxMetodoEnum.FormattingEnabled = true;
+            CBoxMetodoEnum.Location = new Point(134, 87);
+            CBoxMetodoEnum.Name = "CBoxMetodoEnum";
+            CBoxMetodoEnum.Size = new Size(246, 23);
+            CBoxMetodoEnum.TabIndex = 26;
+            // 
+            // CBoxCliente
+            // 
+            CBoxCliente.FormattingEnabled = true;
+            CBoxCliente.Location = new Point(67, 23);
+            CBoxCliente.Name = "CBoxCliente";
+            CBoxCliente.Size = new Size(286, 23);
+            CBoxCliente.TabIndex = 24;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label10.Location = new Point(421, 19);
+            label10.Location = new Point(10, 158);
             label10.Name = "label10";
-            label10.Size = new Size(56, 19);
-            label10.TabIndex = 29;
-            label10.Text = "Ciudad";
-            // 
-            // txtCiudad
-            // 
-            txtCiudad.Location = new Point(492, 19);
-            txtCiudad.Name = "txtCiudad";
-            txtCiudad.Size = new Size(286, 23);
-            txtCiudad.TabIndex = 27;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(492, 55);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(286, 23);
-            textBox5.TabIndex = 28;
-            // 
-            // dtpNac
-            // 
-            dtpNac.Format = DateTimePickerFormat.Short;
-            dtpNac.Location = new Point(141, 128);
-            dtpNac.Name = "dtpNac";
-            dtpNac.Size = new Size(200, 23);
-            dtpNac.TabIndex = 26;
-            // 
-            // sad
-            // 
-            sad.AutoSize = true;
-            sad.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            sad.Location = new Point(6, 225);
-            sad.Name = "sad";
-            sad.Size = new Size(72, 19);
-            sad.TabIndex = 25;
-            sad.Text = "Direccion";
-            // 
-            // txtTelfdsadasefono
-            // 
-            txtTelfdsadasefono.AutoSize = true;
-            txtTelfdsadasefono.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            txtTelfdsadasefono.Location = new Point(7, 189);
-            txtTelfdsadasefono.Name = "txtTelfdsadasefono";
-            txtTelfdsadasefono.Size = new Size(67, 19);
-            txtTelfdsadasefono.TabIndex = 24;
-            txtTelfdsadasefono.Text = "Telefono";
-            // 
-            // txtTelefono
-            // 
-            txtTelefono.Location = new Point(78, 189);
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(286, 23);
-            txtTelefono.TabIndex = 22;
-            // 
-            // txtDireccion
-            // 
-            txtDireccion.Location = new Point(78, 225);
-            txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(286, 23);
-            txtDireccion.TabIndex = 23;
+            label10.Size = new Size(86, 19);
+            label10.TabIndex = 23;
+            label10.Text = "Fecha pago";
             // 
             // btnCancelar
             // 
@@ -260,7 +235,6 @@
             btnCancelar.TabIndex = 21;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
@@ -273,85 +247,115 @@
             btnGuardar.TabIndex = 20;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
-            btnGuardar.Click += btnGuardar_Click;
             // 
-            // txtEmail
+            // label8
             // 
-            txtEmail.Location = new Point(78, 160);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(286, 23);
-            txtEmail.TabIndex = 17;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label8.Location = new Point(7, 221);
+            label8.Name = "label8";
+            label8.Size = new Size(42, 19);
+            label8.TabIndex = 19;
+            label8.Text = "Total";
+            // 
+            // txtTotal
+            // 
+            txtTotal.Location = new Point(67, 221);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(286, 23);
+            txtTotal.TabIndex = 17;
+            txtTotal.WordWrap = false;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label7.Location = new Point(21, 161);
+            label7.Location = new Point(7, 56);
             label7.Name = "label7";
-            label7.Size = new Size(45, 19);
+            label7.Size = new Size(102, 19);
             label7.TabIndex = 16;
-            label7.Text = "Email";
-            // 
-            // txtDni
-            // 
-            txtDni.Location = new Point(93, 92);
-            txtDni.Name = "txtDni";
-            txtDni.Size = new Size(286, 23);
-            txtDni.TabIndex = 14;
+            label7.Text = "Fecha reserva";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label6.Location = new Point(7, 128);
+            label6.Location = new Point(7, 120);
             label6.Name = "label6";
-            label6.Size = new Size(128, 19);
+            label6.Size = new Size(81, 19);
             label6.TabIndex = 13;
-            label6.Text = "Fecha Nacimiento";
+            label6.Text = "Transporte";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label5.Location = new Point(4, 93);
+            label5.Location = new Point(6, 88);
             label5.Name = "label5";
-            label5.Size = new Size(86, 19);
+            label5.Size = new Size(122, 19);
             label5.TabIndex = 12;
-            label5.Text = "Documento";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label4.Location = new Point(21, 55);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 19);
-            label4.TabIndex = 11;
-            label4.Text = "Apellido";
+            label5.Text = "Metodo de pago";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label3.Location = new Point(22, 19);
+            label3.Location = new Point(6, 23);
             label3.Name = "label3";
-            label3.Size = new Size(65, 19);
+            label3.Size = new Size(55, 19);
             label3.TabIndex = 10;
-            label3.Text = "Nombre";
+            label3.Text = "Cliente";
             // 
-            // txtNombre
+            // labelDestino
             // 
-            txtNombre.Location = new Point(93, 19);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(286, 23);
-            txtNombre.TabIndex = 8;
+            labelDestino.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelDestino.Location = new Point(426, 16);
+            labelDestino.Name = "labelDestino";
+            labelDestino.Size = new Size(74, 23);
+            labelDestino.TabIndex = 33;
+            labelDestino.Text = "Destino";
             // 
-            // txtApellido
+            // txtDestino
             // 
-            txtApellido.Location = new Point(93, 55);
-            txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(286, 23);
-            txtApellido.TabIndex = 9;
+            txtDestino.Location = new Point(516, 15);
+            txtDestino.Name = "txtDestino";
+            txtDestino.ReadOnly = true;
+            txtDestino.Size = new Size(200, 23);
+            txtDestino.TabIndex = 34;
+            // 
+            // CBoxItinerario
+            // 
+            CBoxItinerario.Location = new Point(516, 56);
+            CBoxItinerario.Name = "CBoxItinerario";
+            CBoxItinerario.Size = new Size(200, 23);
+            CBoxItinerario.TabIndex = 35;
+            CBoxItinerario.SelectedIndexChanged += CBoxItinerario_SelectedIndexChanged;
+            // 
+            // labelItinerario
+            // 
+            labelItinerario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelItinerario.Location = new Point(426, 58);
+            labelItinerario.Name = "labelItinerario";
+            labelItinerario.Size = new Size(74, 23);
+            labelItinerario.TabIndex = 36;
+            labelItinerario.Text = "Itinerario";
+            // 
+            // CBoxActividad
+            // 
+            CBoxActividad.Location = new Point(516, 97);
+            CBoxActividad.Name = "CBoxActividad";
+            CBoxActividad.Size = new Size(200, 23);
+            CBoxActividad.TabIndex = 37;
+            // 
+            // labelActividad
+            // 
+            labelActividad.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelActividad.Location = new Point(426, 98);
+            labelActividad.Name = "labelActividad";
+            labelActividad.Size = new Size(74, 23);
+            labelActividad.TabIndex = 38;
+            labelActividad.Text = "Actividad";
             // 
             // label2
             // 
@@ -359,9 +363,9 @@
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(5, 78);
             label2.Name = "label2";
-            label2.Size = new Size(116, 21);
+            label2.Size = new Size(114, 21);
             label2.TabIndex = 2;
-            label2.Text = "Buscar cliente";
+            label2.Text = "Buscar ventas";
             // 
             // txtFiltro
             // 
@@ -369,7 +373,6 @@
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(286, 23);
             txtFiltro.TabIndex = 3;
-            txtFiltro.TextChanged += txtFiltro_TextChanged;
             // 
             // btnAgregar
             // 
@@ -382,7 +385,6 @@
             btnAgregar.TabIndex = 4;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = false;
-            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnModificar
             // 
@@ -395,7 +397,6 @@
             btnModificar.TabIndex = 5;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
@@ -408,7 +409,6 @@
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnSalir
             // 
@@ -421,9 +421,8 @@
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
-            btnSalir.Click += btnSalir_Click;
             // 
-            // ClienteView
+            // VentaView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -438,16 +437,17 @@
             Controls.Add(panel1);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "ClienteView";
+            Name = "VentaView";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Clientes";
+            Text = "VENTAS";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridClienteView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridVentaView).EndInit();
             tabPageAddEdit.ResumeLayout(false);
             tabPageAddEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudCanti).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -464,29 +464,29 @@
         private Button btnModificar;
         private Button btnEliminar;
         private Button btnSalir;
-        private DataGridView dataGridClienteView;
+        private DataGridView dataGridVentaView;
         private TabPage tabPageAddEdit;
-        private TextBox txtNombre;
-        private TextBox txtApellido;
         private Label label3;
-        private TextBox txtEmail;
+        private TextBox txtTotal;
         private Label label7;
-        private TextBox txtDni;
         private Label label6;
         private Label label5;
-        private Label label4;
         private Button btnCancelar;
         private Button btnGuardar;
-        private Label sad;
-        private Label txtTelfdsadasefono;
-        private TextBox txtTelefono;
-        private TextBox txtDireccion;
-        private TextBox textBox1;
-        private Label txtPais;
-        private Label txtProvincia;
+        private Label label8;
         private Label label10;
-        private TextBox txtCiudad;
-        private TextBox textBox5;
-        private DateTimePicker dtpNac;
+        private DateTimePicker gtpFechaPago;
+        private DateTimePicker dtpReserva;
+        private ComboBox CBoxTransporte;
+        private ComboBox CBoxMetodoEnum;
+        private ComboBox CBoxCliente;
+        private NumericUpDown nudCanti;
+        private Label label4;
+        private ComboBox CBoxItinerario;
+        private ComboBox CBoxActividad;
+        private TextBox txtDestino;
+        private Label labelDestino;
+        private Label labelItinerario;
+        private Label labelActividad;
     }
 }

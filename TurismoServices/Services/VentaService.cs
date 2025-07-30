@@ -21,9 +21,9 @@ namespace TurismoServices.Services
             return JsonSerializer.Deserialize<List<Venta>>(content, options);
         }
 
-        public async Task<Venta> AddVentaAsync(Venta venta, List<RegistroVenta> registros)
+        public async Task<Venta> AddVentaAsync(Venta venta, List<DetalleVenta> registros)
         {
-            venta.Registros = registros;
+            venta.DetallesVenta = registros;
             var response = await client.PostAsJsonAsync(_endpoint, venta);
             var content = await response.Content.ReadAsStringAsync();
 

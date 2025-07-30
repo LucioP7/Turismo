@@ -59,28 +59,28 @@
             // destinoToolStripMenuItem1
             // 
             destinoToolStripMenuItem1.Name = "destinoToolStripMenuItem1";
-            destinoToolStripMenuItem1.Size = new Size(180, 22);
+            destinoToolStripMenuItem1.Size = new Size(124, 22);
             destinoToolStripMenuItem1.Text = "Destino";
             destinoToolStripMenuItem1.Click += destinoToolStripMenuItem1_Click;
             // 
             // actividadToolStripMenuItem1
             // 
             actividadToolStripMenuItem1.Name = "actividadToolStripMenuItem1";
-            actividadToolStripMenuItem1.Size = new Size(180, 22);
+            actividadToolStripMenuItem1.Size = new Size(124, 22);
             actividadToolStripMenuItem1.Text = "Actividad";
             actividadToolStripMenuItem1.Click += actividadToolStripMenuItem1_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(180, 22);
+            toolStripMenuItem3.Size = new Size(124, 22);
             toolStripMenuItem3.Text = "Itinerario";
             toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
             // clienteToolStripMenuItem
             // 
             clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            clienteToolStripMenuItem.Size = new Size(180, 22);
+            clienteToolStripMenuItem.Size = new Size(124, 22);
             clienteToolStripMenuItem.Text = "Cliente";
             clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
@@ -96,6 +96,7 @@
             ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
             ventaToolStripMenuItem.Size = new Size(180, 22);
             ventaToolStripMenuItem.Text = "Venta";
+            ventaToolStripMenuItem.Click += ventaToolStripMenuItem_Click;
             // 
             // registroToolStripMenuItem
             // 

@@ -36,26 +36,26 @@ namespace TurismoBackend.DataContext
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Venta -> RegistroVenta (1:N)
-            modelBuilder.Entity<RegistroVenta>()
+            modelBuilder.Entity<DetalleVenta>()
                 .HasOne(r => r.Venta)
-                .WithMany(v => v.Registros)
+                .WithMany(v => v.DetallesVenta)
                 .HasForeignKey(r => r.VentaId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // RegistroVenta -> Destino (opcional)
-            modelBuilder.Entity<RegistroVenta>()
+            modelBuilder.Entity<DetalleVenta>()
                 .HasOne(r => r.Destino)
                 .WithMany()
                 .HasForeignKey(r => r.IdDestino);
 
             // RegistroVenta -> Actividad (opcional)
-            modelBuilder.Entity<RegistroVenta>()
+            modelBuilder.Entity<DetalleVenta>()
                 .HasOne(r => r.Actividad)
                 .WithMany()
                 .HasForeignKey(r => r.IdActividad);
 
             // RegistroVenta -> Itinerario (opcional)
-            modelBuilder.Entity<RegistroVenta>()
+            modelBuilder.Entity<DetalleVenta>()
                 .HasOne(r => r.Itinerario)
                 .WithMany()
                 .HasForeignKey(r => r.IdItinerario);
@@ -204,48 +204,48 @@ namespace TurismoBackend.DataContext
                     Id = 1,
                     ClienteId = 1,
                     FechaReservacion = DateTime.Now,
-                    EstadoReservacion = EstadoReservacionEnum.Confirmado,
                     MetodoPago = MetodoPagoEnum.Efectivo,
-                    ConfirmacionPago = ConfirmacionPagoEnum.Confirmado,
+                    Transporte = PreferenciaTransporteEnum.Automóvil,
                     FechaPago = DateTime.Now,
-                    Total = 1500.00m,
-                    Eliminado = false
+                    NumPersona = 2,
+                    Total = 1500,
+                    Eliminado = false,
+                    ItinerarioId = 1,
+                    ActividadId = 1
                 },
                 new Venta
                 {
                     Id = 2,
                     ClienteId = 2,
                     FechaReservacion = DateTime.Now,
-                    EstadoReservacion = EstadoReservacionEnum.Pendiente,
-                    MetodoPago = MetodoPagoEnum.TarjetaCredito,
-                    ConfirmacionPago = ConfirmacionPagoEnum.Pendiente,
+                    MetodoPago = MetodoPagoEnum.Efectivo,
+                    Transporte = PreferenciaTransporteEnum.Automóvil,
                     FechaPago = DateTime.Now,
-                    Total = 2500.00m,
-                    Eliminado = false
+                    NumPersona = 2,
+                    Total = 1500,
+                    Eliminado = false,
+                    ItinerarioId = 2,
+                    ActividadId = 2
                 }
             );
 
             // Registros de venta
-            modelBuilder.Entity<RegistroVenta>().HasData(
-                new RegistroVenta
+            modelBuilder.Entity<DetalleVenta>().HasData(
+                new DetalleVenta
                 {
                     Id = 1,
                     VentaId = 1,
                     IdDestino = 1,
                     IdActividad = 1,
                     IdItinerario = 1,
-                    Transporte = PreferenciaTransporteEnum.Automóvil,
-                    NumPersona = 2
                 },
-                new RegistroVenta
+                new DetalleVenta
                 {
                     Id = 2,
                     VentaId = 2,
                     IdDestino = 2,
                     IdActividad = 2,
                     IdItinerario = 2,
-                    Transporte = PreferenciaTransporteEnum.Autobús,
-                    NumPersona = 4
                 }
             );
         }
@@ -254,7 +254,7 @@ namespace TurismoBackend.DataContext
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Venta> Ventas { get; set; }
-        public DbSet<RegistroVenta> RegistrosVenta { get; set; }
+        public DbSet<DetalleVenta> DetallesVentas { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
         public DbSet<Destino> Destinos { get; set; }
         public DbSet<Itinerario> Itinerarios { get; set; }

@@ -41,5 +41,10 @@ namespace TurismoDesktop.Views
             clienteView.ShowDialog();
         }
 
+        private void ventaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VentaView ventaView = new VentaView();
+            ventaView.ShowDialog();
+        }
     }
 }

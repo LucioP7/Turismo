@@ -33,6 +33,9 @@
     <Compile Update="Views\ClienteView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\VentaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\ItinerarioView.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TurismoBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class Inicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -105,10 +105,10 @@ namespace TurismoBackend.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
                     FechaReservacion = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    EstadoReservacion = table.Column<int>(type: "int", nullable: false),
                     MetodoPago = table.Column<int>(type: "int", nullable: false),
-                    ConfirmacionPago = table.Column<int>(type: "int", nullable: false),
+                    Transporte = table.Column<int>(type: "int", nullable: false),
                     FechaPago = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    NumPersona = table.Column<int>(type: "int", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     Eliminado = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -181,7 +181,7 @@ namespace TurismoBackend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "RegistrosVenta",
+                name: "DetallesVentas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -189,30 +189,28 @@ namespace TurismoBackend.Migrations
                     VentaId = table.Column<int>(type: "int", nullable: false),
                     IdDestino = table.Column<int>(type: "int", nullable: true),
                     IdActividad = table.Column<int>(type: "int", nullable: true),
-                    IdItinerario = table.Column<int>(type: "int", nullable: true),
-                    Transporte = table.Column<int>(type: "int", nullable: false),
-                    NumPersona = table.Column<int>(type: "int", nullable: false)
+                    IdItinerario = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegistrosVenta", x => x.Id);
+                    table.PrimaryKey("PK_DetallesVentas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RegistrosVenta_Actividades_IdActividad",
+                        name: "FK_DetallesVentas_Actividades_IdActividad",
                         column: x => x.IdActividad,
                         principalTable: "Actividades",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_RegistrosVenta_Destinos_IdDestino",
+                        name: "FK_DetallesVentas_Destinos_IdDestino",
                         column: x => x.IdDestino,
                         principalTable: "Destinos",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_RegistrosVenta_Itinerarios_IdItinerario",
+                        name: "FK_DetallesVentas_Itinerarios_IdItinerario",
                         column: x => x.IdItinerario,
                         principalTable: "Itinerarios",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_RegistrosVenta_Ventas_VentaId",
+                        name: "FK_DetallesVentas_Ventas_VentaId",
                         column: x => x.VentaId,
                         principalTable: "Ventas",
                         principalColumn: "Id",
@@ -263,20 +261,20 @@ namespace TurismoBackend.Migrations
 
             migrationBuilder.InsertData(
                 table: "Ventas",
-                columns: new[] { "Id", "ClienteId", "ConfirmacionPago", "Eliminado", "EstadoReservacion", "FechaPago", "FechaReservacion", "MetodoPago", "Total" },
+                columns: new[] { "Id", "ClienteId", "Eliminado", "FechaPago", "FechaReservacion", "MetodoPago", "NumPersona", "Total", "Transporte" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, false, 0, new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3220), new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3202), 0, 1500.00m },
-                    { 2, 2, 0, false, 1, new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3224), new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3223), 1, 2500.00m }
+                    { 1, 1, false, new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1398), new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1382), 0, 2, 1500m, 0 },
+                    { 2, 2, false, new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1403), new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1402), 0, 2, 1500m, 0 }
                 });
 
             migrationBuilder.InsertData(
-                table: "RegistrosVenta",
-                columns: new[] { "Id", "IdActividad", "IdDestino", "IdItinerario", "NumPersona", "Transporte", "VentaId" },
+                table: "DetallesVentas",
+                columns: new[] { "Id", "IdActividad", "IdDestino", "IdItinerario", "VentaId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, 2, 0, 1 },
-                    { 2, 2, 2, 2, 4, 1, 2 }
+                    { 1, 1, 1, 1, 1 },
+                    { 2, 2, 2, 2, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -285,29 +283,29 @@ namespace TurismoBackend.Migrations
                 column: "IdDestino");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Itinerarios_IdDestino",
-                table: "Itinerarios",
-                column: "IdDestino");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrosVenta_IdActividad",
-                table: "RegistrosVenta",
+                name: "IX_DetallesVentas_IdActividad",
+                table: "DetallesVentas",
                 column: "IdActividad");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegistrosVenta_IdDestino",
-                table: "RegistrosVenta",
+                name: "IX_DetallesVentas_IdDestino",
+                table: "DetallesVentas",
                 column: "IdDestino");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegistrosVenta_IdItinerario",
-                table: "RegistrosVenta",
+                name: "IX_DetallesVentas_IdItinerario",
+                table: "DetallesVentas",
                 column: "IdItinerario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegistrosVenta_VentaId",
-                table: "RegistrosVenta",
+                name: "IX_DetallesVentas_VentaId",
+                table: "DetallesVentas",
                 column: "VentaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Itinerarios_IdDestino",
+                table: "Itinerarios",
+                column: "IdDestino");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ventas_ClienteId",
@@ -322,7 +320,7 @@ namespace TurismoBackend.Migrations
                 name: "Administradores");
 
             migrationBuilder.DropTable(
-                name: "RegistrosVenta");
+                name: "DetallesVentas");
 
             migrationBuilder.DropTable(
                 name: "Actividades");

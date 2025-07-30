@@ -11,8 +11,8 @@ using TurismoBackend.DataContext;
 namespace TurismoBackend.Migrations
 {
     [DbContext(typeof(TurismoContext))]
-    [Migration("20250729180741_Inicial")]
-    partial class Inicial
+    [Migration("20250730143910_Inicio")]
+    partial class Inicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -267,6 +267,55 @@ namespace TurismoBackend.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TurismoServices.Models.DetalleVenta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdActividad")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdDestino")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdItinerario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdActividad");
+
+                    b.HasIndex("IdDestino");
+
+                    b.HasIndex("IdItinerario");
+
+                    b.HasIndex("VentaId");
+
+                    b.ToTable("DetallesVentas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IdActividad = 1,
+                            IdDestino = 1,
+                            IdItinerario = 1,
+                            VentaId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IdActividad = 2,
+                            IdDestino = 2,
+                            IdItinerario = 2,
+                            VentaId = 2
+                        });
+                });
+
             modelBuilder.Entity("TurismoServices.Models.Itinerario", b =>
                 {
                     b.Property<int>("Id")
@@ -321,65 +370,6 @@ namespace TurismoBackend.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TurismoServices.Models.RegistroVenta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdActividad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdDestino")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdItinerario")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumPersona")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Transporte")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VentaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdActividad");
-
-                    b.HasIndex("IdDestino");
-
-                    b.HasIndex("IdItinerario");
-
-                    b.HasIndex("VentaId");
-
-                    b.ToTable("RegistrosVenta");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IdActividad = 1,
-                            IdDestino = 1,
-                            IdItinerario = 1,
-                            NumPersona = 2,
-                            Transporte = 0,
-                            VentaId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IdActividad = 2,
-                            IdDestino = 2,
-                            IdItinerario = 2,
-                            NumPersona = 4,
-                            Transporte = 1,
-                            VentaId = 2
-                        });
-                });
-
             modelBuilder.Entity("TurismoServices.Models.Venta", b =>
                 {
                     b.Property<int>("Id")
@@ -389,14 +379,8 @@ namespace TurismoBackend.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ConfirmacionPago")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("EstadoReservacion")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaPago")
                         .HasColumnType("datetime(6)");
@@ -407,8 +391,14 @@ namespace TurismoBackend.Migrations
                     b.Property<int>("MetodoPago")
                         .HasColumnType("int");
 
+                    b.Property<int>("NumPersona")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("Transporte")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -421,25 +411,25 @@ namespace TurismoBackend.Migrations
                         {
                             Id = 1,
                             ClienteId = 1,
-                            ConfirmacionPago = 1,
                             Eliminado = false,
-                            EstadoReservacion = 0,
-                            FechaPago = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3220),
-                            FechaReservacion = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3202),
+                            FechaPago = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1398),
+                            FechaReservacion = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1382),
                             MetodoPago = 0,
-                            Total = 1500.00m
+                            NumPersona = 2,
+                            Total = 1500m,
+                            Transporte = 0
                         },
                         new
                         {
                             Id = 2,
                             ClienteId = 2,
-                            ConfirmacionPago = 0,
                             Eliminado = false,
-                            EstadoReservacion = 1,
-                            FechaPago = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3224),
-                            FechaReservacion = new DateTime(2025, 7, 29, 15, 7, 40, 356, DateTimeKind.Local).AddTicks(3223),
-                            MetodoPago = 1,
-                            Total = 2500.00m
+                            FechaPago = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1403),
+                            FechaReservacion = new DateTime(2025, 7, 30, 11, 39, 8, 792, DateTimeKind.Local).AddTicks(1402),
+                            MetodoPago = 0,
+                            NumPersona = 2,
+                            Total = 1500m,
+                            Transporte = 0
                         });
                 });
 
@@ -453,17 +443,7 @@ namespace TurismoBackend.Migrations
                     b.Navigation("Destino");
                 });
 
-            modelBuilder.Entity("TurismoServices.Models.Itinerario", b =>
-                {
-                    b.HasOne("TurismoServices.Models.Destino", "Destino")
-                        .WithMany("Itinerario")
-                        .HasForeignKey("IdDestino")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Destino");
-                });
-
-            modelBuilder.Entity("TurismoServices.Models.RegistroVenta", b =>
+            modelBuilder.Entity("TurismoServices.Models.DetalleVenta", b =>
                 {
                     b.HasOne("TurismoServices.Models.Actividad", "Actividad")
                         .WithMany()
@@ -478,7 +458,7 @@ namespace TurismoBackend.Migrations
                         .HasForeignKey("IdItinerario");
 
                     b.HasOne("TurismoServices.Models.Venta", "Venta")
-                        .WithMany("Registros")
+                        .WithMany("DetallesVenta")
                         .HasForeignKey("VentaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -490,6 +470,16 @@ namespace TurismoBackend.Migrations
                     b.Navigation("Itinerario");
 
                     b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("TurismoServices.Models.Itinerario", b =>
+                {
+                    b.HasOne("TurismoServices.Models.Destino", "Destino")
+                        .WithMany("Itinerario")
+                        .HasForeignKey("IdDestino")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Destino");
                 });
 
             modelBuilder.Entity("TurismoServices.Models.Venta", b =>
@@ -517,7 +507,7 @@ namespace TurismoBackend.Migrations
 
             modelBuilder.Entity("TurismoServices.Models.Venta", b =>
                 {
-                    b.Navigation("Registros");
+                    b.Navigation("DetallesVenta");
                 });
 #pragma warning restore 612, 618
         }
