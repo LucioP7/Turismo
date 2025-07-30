@@ -22,16 +22,19 @@ namespace TurismoBackend.Controllers
         public async Task<ActionResult<IEnumerable<Venta>>> GetVentas()
         {
             return await _context.Ventas
-                .Include(v => v.Cliente)
-                .Include(v => v.Itinerario).ThenInclude(i => i.Destino)
-                .Include(v => v.Actividad)
-                .Include(v => v.DetallesVenta)
-                    .ThenInclude(dv => dv.Destino)
-                .Include(v => v.DetallesVenta)
-                    .ThenInclude(dv => dv.Actividad)
-                .Include(v => v.DetallesVenta)
-                    .ThenInclude(dv => dv.Itinerario)
-                .ToListAsync();
+                            .Include(v => v.Cliente)
+                            .Include(v => v.Itinerario)
+                                .ThenInclude(i => i.Destino)
+                            .Include(v => v.Actividad)
+                                .ThenInclude(a => a.Destino) // <- FALTABA ESTO
+                            .Include(v => v.DetallesVenta)
+                                .ThenInclude(dv => dv.Destino)
+                            .Include(v => v.DetallesVenta)
+                                .ThenInclude(dv => dv.Actividad)
+                            .Include(v => v.DetallesVenta)
+                                .ThenInclude(dv => dv.Itinerario)
+                            .ToListAsync();
+
         }
 
         // GET: api/Ventas/5

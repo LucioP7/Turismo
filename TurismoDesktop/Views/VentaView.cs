@@ -15,7 +15,9 @@ namespace TurismoDesktop.Views
         private readonly GenericService<Cliente> clienteService = new();
         private readonly GenericService<Itinerario> itinerarioService = new();
         private readonly GenericService<Actividad> actividadService = new();
+        private readonly GenericService<Destino> destinoService = new();
 
+        private List<Destino> listaDestinos = new();
         private List<Venta> listaVentas = new();
         private List<Cliente> listaClientes = new();
         private List<Itinerario> listaItinerarios = new();
@@ -45,6 +47,15 @@ namespace TurismoDesktop.Views
             {
                 listaClientes = await clienteService.GetAllAsync() ?? new List<Cliente>();
                 listaItinerarios = await itinerarioService.GetAllAsync() ?? new List<Itinerario>();
+                listaDestinos = await destinoService.GetAllAsync() ?? new List<Destino>();
+
+
+                CBoxDestino.DataSource = listaDestinos;
+                CBoxDestino.DisplayMember = "Nombre";
+                CBoxDestino.ValueMember = "Id";
+                CBoxDestino.SelectedIndex = -1;
+
+
 
                 CBoxCliente.DataSource = listaClientes;
                 CBoxCliente.DisplayMember = "NombreCompleto"; // Asumo que concatenás Nombre + Apellido en Cliente, si no cambialo a ToString
@@ -84,17 +95,24 @@ namespace TurismoDesktop.Views
                 dataGridVentaView.DataSource = listaVentas.Select(v => new
                 {
                     v.Id,
-                    Cliente = v.Cliente?.ToString(),
+                    Cliente = v.Cliente?.ToString()
+,
+
                     Itinerario = v.Itinerario?.Nombre,
-                    Destino = v.Itinerario?.Destino?.Nombre,
+
+                    // Mostramos el destino del itinerario si hay, sino el de la actividad
+                    Destino = ObtenerDestinoNombre(v),
+
+
                     Actividad = v.Actividad?.Nombre,
                     v.NumPersona,
                     MetodoPago = v.MetodoPago.ToString(),
                     Transporte = v.Transporte.ToString(),
                     FechaReservacion = v.FechaReservacion.ToShortDateString(),
                     FechaPago = v.FechaPago.ToShortDateString(),
-                    Total = v.Total.ToString("C")
+                    Total = v.Total.ToString("N2")  // Ej: "1234.56"
                 }).ToList();
+
 
                 LimpiarFormulario();
                 tabControl1.SelectedTab = tabPage1;
@@ -103,6 +121,13 @@ namespace TurismoDesktop.Views
             {
                 MessageBox.Show($"Error cargando ventas: {ex.Message}");
             }
+        }
+
+        private string ObtenerDestinoNombre(Venta v)
+        {
+            return v.Itinerario?.Destino?.Nombre
+                ?? v.Actividad?.Destino?.Nombre
+                ?? "Sin destino";
         }
 
         private void ConfigurarEventos()
@@ -119,16 +144,25 @@ namespace TurismoDesktop.Views
                     // Cargar actividades por destino del itinerario
                     await CargarActividadesPorDestinoAsync(itinerarioSeleccionado.Id);
 
-                    // Mostrar destino
-                    txtDestino.Text = itinerarioSeleccionado.Destino?.Nombre ?? "";
+                    // Seleccionar el destino en el combo sin sobrescribir el DataSource
+                    var destino = itinerarioSeleccionado.Destino;
+                    if (destino != null)
+                    {
+                        CBoxDestino.SelectedValue = destino.Id;
+                    }
+                    else
+                    {
+                        CBoxDestino.SelectedIndex = -1;
+                    }
                 }
                 else
                 {
                     CBoxActividad.DataSource = null;
-                    txtDestino.Text = "";
+                    CBoxDestino.SelectedIndex = -1;
                 }
                 CalcularTotal();
             };
+
 
             CBoxActividad.SelectedIndexChanged += (s, e) =>
             {
@@ -172,7 +206,8 @@ namespace TurismoDesktop.Views
                 decimal costo = actividad.Costo;
                 int cantidad = (int)nudCanti.Value;
                 decimal total = costo * cantidad;
-                txtTotal.Text = total.ToString("F2");
+                txtTotal.Text = total.ToString("N2"); // Solo número con 2 decimales, sin moneda
+
             }
             else
             {
@@ -189,10 +224,10 @@ namespace TurismoDesktop.Views
             CBoxMetodoEnum.SelectedIndex = 0;
             CBoxTransporte.SelectedIndex = 0;
             dtpReserva.Value = DateTime.Today;
-            gtpFechaPago.Value = DateTime.Today;
+            dtpFechaPago.Value = DateTime.Today;
             nudCanti.Value = 1;
             txtTotal.Text = "0.00";
-            txtDestino.Text = "";
+            CBoxDestino.SelectedIndex = -1;
             tabControl1.SelectedTab = tabPage1;
         }
 
@@ -224,7 +259,7 @@ namespace TurismoDesktop.Views
             CBoxMetodoEnum.SelectedItem = v.MetodoPago;
             CBoxTransporte.SelectedItem = v.Transporte;
             dtpReserva.Value = v.FechaReservacion;
-            gtpFechaPago.Value = v.FechaPago;
+            dtpFechaPago.Value = v.FechaPago;
             nudCanti.Value = v.NumPersona > 0 ? v.NumPersona : 1;
             CalcularTotal();
             tabControl1.SelectedTab = tabPageAddEdit;
@@ -284,42 +319,58 @@ namespace TurismoDesktop.Views
         private async void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidarFormulario()) return;
-
             try
             {
                 var venta = new Venta
                 {
-                    Id = ventaSeleccionada?.Id ?? 0,
                     IdCliente = (int)CBoxCliente.SelectedValue,
-                    IdItinerario = (int)CBoxItinerario.SelectedValue,
-                    IdActividad = (int)CBoxActividad.SelectedValue,
-                    MetodoPago = (MetodoPagoEnum)CBoxMetodoEnum.SelectedItem,
-                    Transporte = (PreferenciaTransporteEnum)CBoxTransporte.SelectedItem,
-                    FechaReservacion = dtpReserva.Value.Date,
-                    FechaPago = gtpFechaPago.Value.Date,
+                    FechaReservacion = dtpReserva.Value,
+                    FechaPago = dtpFechaPago.Value,
+                    MetodoPago = MetodoPagoEnum.Efectivo, // o leer desde un ComboBox
+                    Transporte = PreferenciaTransporteEnum.Automóvil, // idem
                     NumPersona = (int)nudCanti.Value,
                     Total = decimal.Parse(txtTotal.Text),
-                    Eliminado = false
+                    IdItinerario = (int)CBoxItinerario.SelectedValue,
+                    IdActividad = (int)CBoxActividad.SelectedValue
                 };
 
-                if (venta.Id == 0)
+                // Generamos un detalle automático (si no tenés CBoxDestino, usamos Itinerario)
+                // SIN venta = venta → evita ciclo
+                var detalles = new List<DetalleVenta>
                 {
-                    // Alta
-                    await ventaService.AddAsync(venta);
-                }
-                else
-                {
-                    // Modificación
-                    await ventaService.UpdateAsync(venta);
-                }
+                    new DetalleVenta
+                    {
+                        IdItinerario = venta.IdItinerario,
+                        IdActividad = venta.IdActividad,
+                        IdDestino = CBoxDestino.SelectedValue is int id ? id : null
+                    }
+                };
 
-                await CargarVentasAsync(txtFiltro.Text);
+                // Evitar ciclos de referencia para serializar correctamente
+                //venta.Cliente = null;
+                //venta.Itinerario = null;
+                //venta.Actividad = null;
+                //foreach (var d in detalles)
+                //{
+                //    d.Destino = null;
+                //    d.Actividad = null;
+                //    d.Itinerario = null;
+                //    d.Venta = null; // 🔥 IMPORTANTE: evitar ciclo
+                //}
+
+
+                var ventaService = new VentaService();
+                var ventaGuardada = await ventaService.AddVentaAsync(venta, detalles);
+
                 MessageBox.Show("Venta guardada correctamente");
-                LimpiarFormulario();
+
+                // Podés abrir el form de detalle o refrescar grilla
+                // new DetalleVentaForm(ventaGuardada.Id).Show();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error guardando venta: {ex.Message}");
+                MessageBox.Show("Error guardando venta: " + ex.Message);
             }
         }
 

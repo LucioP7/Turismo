@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using TurismoServices.Class;
 using TurismoServices.Interfaces;
 
@@ -16,7 +17,8 @@ namespace TurismoServices.Services
             client = new HttpClient();
             options = new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
+                ReferenceHandler = ReferenceHandler.IgnoreCycles
             };
 
             string urlApi = Properties.Resources.UrlApi;

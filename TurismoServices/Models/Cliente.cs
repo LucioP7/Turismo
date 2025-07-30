@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TurismoServices.Models
 {
@@ -28,10 +29,11 @@ namespace TurismoServices.Models
 
         // Relación con Ventas
         public virtual List<Venta> Ventas { get; set; } = new List<Venta>();
-
         public override string ToString()
         {
             return $"{Nombre} {Apellido}";
         }
+
+
     }
 }

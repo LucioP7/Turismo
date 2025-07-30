@@ -418,8 +418,8 @@ namespace TurismoBackend.Migrations
                         {
                             Id = 1,
                             Eliminado = false,
-                            FechaPago = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(881),
-                            FechaReservacion = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(867),
+                            FechaPago = new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7506),
+                            FechaReservacion = new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7489),
                             IdActividad = 1,
                             IdCliente = 1,
                             IdItinerario = 1,
@@ -432,8 +432,8 @@ namespace TurismoBackend.Migrations
                         {
                             Id = 2,
                             Eliminado = false,
-                            FechaPago = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(886),
-                            FechaReservacion = new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(885),
+                            FechaPago = new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7512),
+                            FechaReservacion = new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7511),
                             IdActividad = 2,
                             IdCliente = 2,
                             IdItinerario = 2,

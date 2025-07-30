@@ -36,7 +36,7 @@
             tabPageAddEdit = new TabPage();
             nudCanti = new NumericUpDown();
             label4 = new Label();
-            gtpFechaPago = new DateTimePicker();
+            dtpFechaPago = new DateTimePicker();
             dtpReserva = new DateTimePicker();
             CBoxTransporte = new ComboBox();
             CBoxMetodoEnum = new ComboBox();
@@ -51,7 +51,6 @@
             label5 = new Label();
             label3 = new Label();
             labelDestino = new Label();
-            txtDestino = new TextBox();
             CBoxItinerario = new ComboBox();
             labelItinerario = new Label();
             CBoxActividad = new ComboBox();
@@ -62,6 +61,7 @@
             btnModificar = new Button();
             btnEliminar = new Button();
             btnSalir = new Button();
+            CBoxDestino = new ComboBox();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -126,9 +126,10 @@
             // 
             // tabPageAddEdit
             // 
+            tabPageAddEdit.Controls.Add(CBoxDestino);
             tabPageAddEdit.Controls.Add(nudCanti);
             tabPageAddEdit.Controls.Add(label4);
-            tabPageAddEdit.Controls.Add(gtpFechaPago);
+            tabPageAddEdit.Controls.Add(dtpFechaPago);
             tabPageAddEdit.Controls.Add(dtpReserva);
             tabPageAddEdit.Controls.Add(CBoxTransporte);
             tabPageAddEdit.Controls.Add(CBoxMetodoEnum);
@@ -143,7 +144,6 @@
             tabPageAddEdit.Controls.Add(label5);
             tabPageAddEdit.Controls.Add(label3);
             tabPageAddEdit.Controls.Add(labelDestino);
-            tabPageAddEdit.Controls.Add(txtDestino);
             tabPageAddEdit.Controls.Add(CBoxItinerario);
             tabPageAddEdit.Controls.Add(labelItinerario);
             tabPageAddEdit.Controls.Add(CBoxActividad);
@@ -174,13 +174,13 @@
             label4.TabIndex = 31;
             label4.Text = "Cantidad personas";
             // 
-            // gtpFechaPago
+            // dtpFechaPago
             // 
-            gtpFechaPago.Format = DateTimePickerFormat.Short;
-            gtpFechaPago.Location = new Point(102, 158);
-            gtpFechaPago.Name = "gtpFechaPago";
-            gtpFechaPago.Size = new Size(110, 23);
-            gtpFechaPago.TabIndex = 29;
+            dtpFechaPago.Format = DateTimePickerFormat.Short;
+            dtpFechaPago.Location = new Point(102, 158);
+            dtpFechaPago.Name = "dtpFechaPago";
+            dtpFechaPago.Size = new Size(110, 23);
+            dtpFechaPago.TabIndex = 29;
             // 
             // dtpReserva
             // 
@@ -316,14 +316,6 @@
             labelDestino.TabIndex = 33;
             labelDestino.Text = "Destino";
             // 
-            // txtDestino
-            // 
-            txtDestino.Location = new Point(516, 15);
-            txtDestino.Name = "txtDestino";
-            txtDestino.ReadOnly = true;
-            txtDestino.Size = new Size(200, 23);
-            txtDestino.TabIndex = 34;
-            // 
             // CBoxItinerario
             // 
             CBoxItinerario.Location = new Point(516, 56);
@@ -422,6 +414,13 @@
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
             // 
+            // CBoxDestino
+            // 
+            CBoxDestino.Location = new Point(516, 15);
+            CBoxDestino.Name = "CBoxDestino";
+            CBoxDestino.Size = new Size(200, 23);
+            CBoxDestino.TabIndex = 39;
+            // 
             // VentaView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -484,9 +483,10 @@
         private Label label4;
         private ComboBox CBoxItinerario;
         private ComboBox CBoxActividad;
-        private TextBox txtDestino;
         private Label labelDestino;
         private Label labelItinerario;
         private Label labelActividad;
+        private DateTimePicker dtpFechaPago;
+        private ComboBox CBoxDestino;
     }
 }

@@ -8,8 +8,6 @@ namespace TurismoServices.Models
     public class Venta
     {
         public int Id { get; set; }
-
-        [Required]
         public int IdCliente { get; set; }
         public virtual Cliente Cliente { get; set; }
         public DateTime FechaReservacion { get; set; }

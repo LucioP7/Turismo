@@ -278,8 +278,8 @@ namespace TurismoBackend.Migrations
                 columns: new[] { "Id", "Eliminado", "FechaPago", "FechaReservacion", "IdActividad", "IdCliente", "IdItinerario", "MetodoPago", "NumPersona", "Total", "Transporte" },
                 values: new object[,]
                 {
-                    { 1, false, new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(881), new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(867), 1, 1, 1, 0, 2, 1500m, 0 },
-                    { 2, false, new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(886), new DateTime(2025, 7, 30, 14, 0, 16, 307, DateTimeKind.Local).AddTicks(885), 2, 2, 2, 0, 2, 1500m, 0 }
+                    { 1, false, new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7506), new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7489), 1, 1, 1, 0, 2, 1500m, 0 },
+                    { 2, false, new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7512), new DateTime(2025, 7, 30, 15, 32, 17, 333, DateTimeKind.Local).AddTicks(7511), 2, 2, 2, 0, 2, 1500m, 0 }
                 });
 
             migrationBuilder.InsertData(
