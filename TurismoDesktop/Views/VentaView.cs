@@ -117,7 +117,7 @@ namespace TurismoDesktop.Views
                 if (CBoxItinerario.SelectedItem is Itinerario itinerarioSeleccionado)
                 {
                     // Cargar actividades por destino del itinerario
-                    await CargarActividadesPorDestinoAsync(itinerarioSeleccionado.DestinoId);
+                    await CargarActividadesPorDestinoAsync(itinerarioSeleccionado.Id);
 
                     // Mostrar destino
                     txtDestino.Text = itinerarioSeleccionado.Destino?.Nombre ?? "";
@@ -205,14 +205,21 @@ namespace TurismoDesktop.Views
             CBoxCliente.SelectedValue = v.ClienteId;
             CBoxItinerario.SelectedValue = v.ItinerarioId;
 
-            // Esto carga actividades y selecciona la correcta
-            _ = CargarActividadesPorDestinoAsync(v.Itinerario.DestinoId).ContinueWith(_ =>
+            // Cargar actividades por destino y seleccionar la actividad correspondiente
+            if (v.Itinerario != null && v.Itinerario.IdDestino.HasValue)
             {
-                this.Invoke((MethodInvoker)delegate
+                _ = CargarActividadesPorDestinoAsync(v.Itinerario.IdDestino.Value).ContinueWith(_ =>
                 {
-                    CBoxActividad.SelectedValue = v.ActividadId;
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        CBoxActividad.SelectedValue = v.ActividadId;
+                    });
                 });
-            });
+            }
+            else
+            {
+                CBoxActividad.DataSource = null;
+            }
 
             CBoxMetodoEnum.SelectedItem = v.MetodoPago;
             CBoxTransporte.SelectedItem = v.Transporte;

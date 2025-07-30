@@ -12,7 +12,7 @@ namespace TurismoServices.Services
         public async Task<List<Venta>> GetAllWithDetailsAsync()
         {
             // Debes tener un endpoint en tu API que devuelva las ventas con detalles
-            var response = await client.GetAsync($"{_endpoint}/registrosventas");
+            var response = await client.GetAsync($"{_endpoint}/detallesventas");
             var content = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)

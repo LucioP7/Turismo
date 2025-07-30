@@ -36,7 +36,6 @@
             clienteToolStripMenuItem = new ToolStripMenuItem();
             ventaYRegistroToolStripMenuItem = new ToolStripMenuItem();
             ventaToolStripMenuItem = new ToolStripMenuItem();
-            registroToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -86,7 +85,7 @@
             // 
             // ventaYRegistroToolStripMenuItem
             // 
-            ventaYRegistroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ventaToolStripMenuItem, registroToolStripMenuItem });
+            ventaYRegistroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ventaToolStripMenuItem });
             ventaYRegistroToolStripMenuItem.Name = "ventaYRegistroToolStripMenuItem";
             ventaYRegistroToolStripMenuItem.Size = new Size(100, 20);
             ventaYRegistroToolStripMenuItem.Text = "Venta y registro";
@@ -96,13 +95,7 @@
             ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
             ventaToolStripMenuItem.Size = new Size(180, 22);
             ventaToolStripMenuItem.Text = "Venta";
-            ventaToolStripMenuItem.Click += ventaToolStripMenuItem_Click;
-            // 
-            // registroToolStripMenuItem
-            // 
-            registroToolStripMenuItem.Name = "registroToolStripMenuItem";
-            registroToolStripMenuItem.Size = new Size(180, 22);
-            registroToolStripMenuItem.Text = "Registro";
+            ventaToolStripMenuItem.Click += ventaToolStripMenuItem_Click_1;
             // 
             // MainView
             // 
@@ -131,6 +124,5 @@
         private ToolStripMenuItem clienteToolStripMenuItem;
         private ToolStripMenuItem ventaYRegistroToolStripMenuItem;
         private ToolStripMenuItem ventaToolStripMenuItem;
-        private ToolStripMenuItem registroToolStripMenuItem;
     }
 }
